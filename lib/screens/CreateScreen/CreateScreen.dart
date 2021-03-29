@@ -1,3 +1,4 @@
+import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_scanner/components/txtField.dart';
@@ -13,6 +14,7 @@ class _CreateScreenState extends State<CreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text('Create QR'),
       ),
@@ -20,20 +22,17 @@ class _CreateScreenState extends State<CreateScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 20),
-          Card(
-            elevation: 6,
+          ClayContainer(
+            color: Theme.of(context).canvasColor,
+            borderRadius: 16,
+            spread: 10,
+            depth: 10,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
-                color: Colors.red,
+                color: Colors.black26,
                 height: 200,
                 width: 200,
-              ),
-            ),
-            color: Theme.of(context).backgroundColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(16),
               ),
             ),
           ),

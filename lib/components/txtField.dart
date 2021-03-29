@@ -1,3 +1,4 @@
+import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 
 class TxtField extends StatelessWidget {
@@ -35,9 +36,11 @@ class TxtField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 6,
-      borderRadius: BorderRadius.circular(16),
+    return ClayContainer(
+      color: Theme.of(context).canvasColor,
+      borderRadius: 16,
+      spread: 10,
+      depth: 10,
       child: TextField(
         autofocus: autofocus,
         onSubmitted: onSubmit,
@@ -56,7 +59,7 @@ class TxtField extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide.none,
+              borderSide: BorderSide(color: Colors.grey.withOpacity(0.3)),
               borderRadius: BorderRadius.circular(16)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Theme.of(context).accentColor),

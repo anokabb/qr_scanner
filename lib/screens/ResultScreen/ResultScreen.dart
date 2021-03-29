@@ -1,5 +1,7 @@
 import 'package:clay_containers/clay_containers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_scanner/components/CuperIcon.dart';
 
 class ResultScreen extends StatefulWidget {
   ResultScreen();
@@ -9,11 +11,10 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
-  Color baseColor = Color(0xFFF2F2F2);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text('Result'),
       ),
@@ -24,9 +25,10 @@ class _ResultScreenState extends State<ResultScreen> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ClayContainer(
-                color: baseColor,
+                color: Theme.of(context).canvasColor,
                 borderRadius: 16,
-                depth: 30,
+                spread: 10,
+                depth: 10,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -62,12 +64,64 @@ class _ResultScreenState extends State<ResultScreen> {
                     ],
                   ),
                 ),
-                // shape: RoundedRectangleBorder(
-                //   borderRadius: BorderRadius.all(
-                //     Radius.circular(16),
-                //   ),
-                // ),
               ),
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: <Widget>[
+                CuperIcon(
+                  icon: Icons.share_rounded,
+                  text: 'Share',
+                  onPressed: () {},
+                ),
+                CuperIcon(
+                  icon: Icons.copy_rounded,
+                  text: 'Copy',
+                  onPressed: () {},
+                ),
+                CuperIcon(
+                  icon: Icons.web,
+                  text: 'Search',
+                  onPressed: () {},
+                ),
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 46,
+                ),
+                ClayContainer(
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: 16,
+                  spread: 10,
+                  depth: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      color: Colors.black26,
+                      height: 200,
+                      width: 200,
+                    ),
+                  ),
+                ),
+                Column(
+                  children: <Widget>[
+                    CuperIcon(
+                        icon: Icons.share_rounded,
+                        text: 'Share',
+                        onPressed: () {}),
+                    CuperIcon(
+                        icon: Icons.save_alt_rounded,
+                        text: 'Save',
+                        onPressed: () {}),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                ),
+              ],
             ),
           ],
         ),
