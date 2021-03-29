@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/screens/CreateScreen/CreateScreen.dart';
+import 'package:qr_scanner/screens/ResultScreen/ResultScreen.dart';
 import 'package:qr_scanner/screens/ScannerScreen/ScannerScreen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -20,7 +22,8 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _buildScreens() {
     return [
-      ScannerScreen(),
+      ResultScreen(),
+      CreateScreen(),
       ScannerScreen(),
     ];
   }
@@ -28,8 +31,12 @@ class _MainScreenState extends State<MainScreen> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.qr_code_scanner_rounded),
-        title: ("Scan"),
+        icon: Icon(Icons.create_outlined),
+        title: ("Create"),
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.create_outlined),
+        title: ("Create"),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.qr_code_scanner_rounded),
