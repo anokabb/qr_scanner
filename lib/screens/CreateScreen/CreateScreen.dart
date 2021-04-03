@@ -1,6 +1,7 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_scanner/components/CustomAppBar.dart';
 import 'package:qr_scanner/components/txtField.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -16,7 +17,11 @@ class _CreateScreenState extends State<CreateScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: Text('Create QR'),
+        centerTitle: true,
+        shape: CustomAppBar(),
+        title: Text(
+          'Create QR',
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

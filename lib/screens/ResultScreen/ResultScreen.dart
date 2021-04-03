@@ -2,6 +2,7 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_scanner/components/CuperIcon.dart';
+import 'package:qr_scanner/components/CustomAppBar.dart';
 
 class ResultScreen extends StatefulWidget {
   ResultScreen();
@@ -16,7 +17,11 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: Text('Result'),
+        centerTitle: true,
+        shape: CustomAppBar(),
+        title: Text(
+          'History',
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
