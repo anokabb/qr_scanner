@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_reader/flutter_qr_reader.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_scanner/cubit/flash_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:qr_scanner/screens/ResultScreen/ResultScreen.dart';
 
 class ScannerScreen extends StatefulWidget {
   ScannerScreen();
@@ -117,10 +119,16 @@ class _ScannerScreenState extends State<ScannerScreen> {
         msg: 'No Qr code found',
       );
     } else {
-      Fluttertoast.showToast(
-        msg: qrData,
-        backgroundColor: Colors.green,
+      pushNewScreen(
+        context,
+        screen: ResultScreen(),
+        withNavBar: false,
+        pageTransitionAnimation: PageTransitionAnimation.slideUp,
       );
+      // Fluttertoast.showToast(
+      //   msg: qrData,
+      //   backgroundColor: Colors.green,
+      // );
     }
   }
 

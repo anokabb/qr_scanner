@@ -1,8 +1,10 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_scanner/components/CustomAppBar.dart';
 import 'package:qr_scanner/components/txtField.dart';
+import 'package:qr_scanner/screens/ResultScreen/ResultScreen.dart';
 
 class CreateScreen extends StatefulWidget {
   CreateScreen();
@@ -59,7 +61,14 @@ class _CreateScreenState extends State<CreateScreen> {
                   size: 30,
                   color: Theme.of(context).accentColor,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  pushNewScreen(
+                    context,
+                    screen: ResultScreen(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.slideUp,
+                  );
+                },
               )
             ],
           ),

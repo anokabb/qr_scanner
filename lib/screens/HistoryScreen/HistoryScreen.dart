@@ -6,6 +6,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_scanner/components/CuperIcon.dart';
 import 'package:qr_scanner/components/CustomAppBar.dart';
 import 'package:qr_scanner/cubit/history_cubit.dart';
+import 'package:qr_scanner/screens/ResultScreen/ResultScreen.dart';
 
 class HistoryScreen extends StatefulWidget {
   HistoryScreen();
@@ -108,19 +109,29 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return ListView.builder(
         itemCount: 99,
         itemBuilder: (_, pos) {
-          return ListTile(
-            leading: ClayContainer(
-              borderRadius: 50,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.link,
-                  color: Theme.of(context).accentColor,
+          return GestureDetector(
+            onTap: () {
+              pushNewScreen(
+                context,
+                screen: ResultScreen(),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.slideUp,
+              );
+            },
+            child: ListTile(
+              leading: ClayContainer(
+                borderRadius: 50,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.link,
+                    color: Theme.of(context).accentColor,
+                  ),
                 ),
               ),
+              title: Text('title $pos'),
+              subtitle: Text('data'),
             ),
-            title: Text('title $pos'),
-            subtitle: Text('data'),
           );
         },
       );
@@ -128,19 +139,29 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return ListView.builder(
         itemCount: 4,
         itemBuilder: (_, pos) {
-          return ListTile(
-            leading: ClayContainer(
-              borderRadius: 50,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.link,
-                  color: Theme.of(context).accentColor,
+          return GestureDetector(
+            onTap: () {
+              pushNewScreen(
+                context,
+                screen: ResultScreen(),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.slideUp,
+              );
+            },
+            child: ListTile(
+              leading: ClayContainer(
+                borderRadius: 50,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.link,
+                    color: Theme.of(context).accentColor,
+                  ),
                 ),
               ),
+              title: Text('title $pos'),
+              subtitle: Text('data created'),
             ),
-            title: Text('title $pos'),
-            subtitle: Text('data created'),
           );
         },
       );

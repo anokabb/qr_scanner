@@ -19,6 +19,14 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         centerTitle: true,
         shape: CustomAppBar(),
+        leading: CupertinoButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.close,
+              color: Colors.white,
+            )),
         title: Text(
           'Result',
         ),

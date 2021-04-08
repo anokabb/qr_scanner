@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_scanner/screens/CreateScreen/CreateScreen.dart';
 import 'package:qr_scanner/screens/HistoryScreen/HistoryScreen.dart';
-import 'package:qr_scanner/screens/ResultScreen/ResultScreen.dart';
 import 'package:qr_scanner/screens/ScannerScreen/ScannerScreen.dart';
 
 class MainScreen extends StatefulWidget {
