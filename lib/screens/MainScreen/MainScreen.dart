@@ -23,31 +23,31 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _buildScreens() {
     return [
-      HistoryScreen(),
       ScannerScreen(),
+      HistoryScreen(),
       CreateScreen(),
-      ResultScreen(),
+      // ResultScreen(),
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.history),
-        title: ("History"),
-      ),
-      PersistentBottomNavBarItem(
         icon: Icon(Icons.qr_code_scanner_rounded),
         title: ("Scan"),
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.create_outlined),
-        title: ("Create"),
+        icon: Icon(Icons.history),
+        title: ("History"),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.create_outlined),
         title: ("Create"),
       ),
+      // PersistentBottomNavBarItem(
+      //   icon: Icon(Icons.create_outlined),
+      //   title: ("Create"),
+      // ),
     ];
   }
 

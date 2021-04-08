@@ -20,7 +20,7 @@ class _ResultScreenState extends State<ResultScreen> {
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(
-          'History',
+          'Result',
         ),
       ),
       body: SingleChildScrollView(

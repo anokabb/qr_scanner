@@ -1,9 +1,12 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_qr_reader/flutter_qr_reader.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_scanner/cubit/flash_cubit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ScannerScreen extends StatefulWidget {
   ScannerScreen();
@@ -53,7 +56,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       children: <Widget>[
                         CupertinoButton(
                           padding: EdgeInsets.zero,
-                          onPressed: () {},
+                          onPressed: pickImage,
                           child: Icon(Icons.image_rounded),
                         ),
                         CupertinoButton(
@@ -102,6 +105,23 @@ class _ScannerScreenState extends State<ScannerScreen> {
             ),
           );
         }));
+  }
+
+  Future pickImage() async {
+    final PickedFile? pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    String qrData = await FlutterQrReader.imgScan(pickedFile!.path);
+    print('qrData : $qrData');
+    if (qrData.isEmpty) {
+      Fluttertoast.showToast(
+        msg: 'No Qr code found',
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: qrData,
+        backgroundColor: Colors.green,
+      );
+    }
   }
 
   void _onQRViewCreated(QRViewController controller) {
