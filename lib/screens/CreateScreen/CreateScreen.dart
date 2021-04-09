@@ -2,6 +2,8 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/db/database_provider.dart';
+import 'package:qr_scanner/models/QR.dart';
 import '../../components/CustomAppBar.dart';
 import '../../components/txtField.dart';
 import '../ResultScreen/ResultScreen.dart';
@@ -14,6 +16,7 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,19 +64,25 @@ class _CreateScreenState extends State<CreateScreen> {
                   size: 30,
                   color: Theme.of(context).accentColor,
                 ),
-                onPressed: () {
-                  pushNewScreen(
-                    context,
-                    screen: ResultScreen(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.slideUp,
-                  );
-                },
+                onPressed: createQR,
               )
             ],
           ),
         ],
       ),
     );
+  }
+
+  void createQR() {
+    if (!_controller.text.isEmpty) {
+      QR Qr = QR(value: _controller.text, type: QR.TEXT, isScanned: true);
+      DatabaseProvider.db.insert(context, Qr);
+      pushNewScreen(
+        context,
+        screen: ResultScreen(Qr),
+        withNavBar: false,
+        pageTransitionAnimation: PageTransitionAnimation.slideUp,
+      );
+    }
   }
 }

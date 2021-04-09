@@ -1,11 +1,13 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_scanner/models/QR.dart';
 import '../../components/CuperIcon.dart';
 import '../../components/CustomAppBar.dart';
 
 class ResultScreen extends StatefulWidget {
-  ResultScreen();
+  final QR Qr;
+  ResultScreen(this.Qr);
 
   @override
   _ResultScreenState createState() => _ResultScreenState();

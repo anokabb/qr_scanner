@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import '../../components/CuperIcon.dart';
+import 'package:qr_scanner/bloc/qr_bloc.dart';
+import 'package:qr_scanner/db/database_provider.dart';
+import 'package:qr_scanner/models/QR.dart';
 import '../../components/CustomAppBar.dart';
 import '../../cubit/history_cubit.dart';
 import '../ResultScreen/ResultScreen.dart';
@@ -17,9 +19,22 @@ class HistoryScreen extends StatefulWidget {
 
 class _HistoryScreenState extends State<HistoryScreen> {
   @override
+  void initState() {
+    super.initState();
+    DatabaseProvider.db.getQrs(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HistoryCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<QrBloc>(
+          create: (BuildContext context) => QrBloc([]),
+        ),
+        BlocProvider<HistoryCubit>(
+          create: (BuildContext context) => HistoryCubit(),
+        ),
+      ],
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
@@ -96,7 +111,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                 ),
               ),
-              Expanded(child: _getHistoryList(state))
+              Expanded(
+                child: BlocConsumer<QrBloc, List<QR>>(
+                  builder: (context, Qrs) {
+                    return _getHistoryList(state, Qrs);
+                  },
+                  listener: (_, __) {},
+                ),
+              ),
             ],
           );
         }),
@@ -104,16 +126,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
-  ListView _getHistoryList(HistoryState state) {
+  ListView _getHistoryList(HistoryState state, List<QR> Qrs) {
     if (state is HistoryScanned) {
+      List<QR> _qrList = Qrs.where((qr) => qr.isScanned).toList();
       return ListView.builder(
-        itemCount: 99,
+        itemCount: _qrList.length,
         itemBuilder: (_, pos) {
           return GestureDetector(
             onTap: () {
               pushNewScreen(
                 context,
-                screen: ResultScreen(),
+                screen: ResultScreen(_qrList[pos]),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.slideUp,
               );
@@ -129,21 +152,22 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                 ),
               ),
-              title: Text('title $pos'),
-              subtitle: Text('data'),
+              title: Text(_qrList[pos].value),
+              subtitle: Text(_qrList[pos].typeToString()),
             ),
           );
         },
       );
     } else {
+      List<QR> _qrList = Qrs.where((qr) => !qr.isScanned).toList();
       return ListView.builder(
-        itemCount: 4,
+        itemCount: _qrList.length,
         itemBuilder: (_, pos) {
           return GestureDetector(
             onTap: () {
               pushNewScreen(
                 context,
-                screen: ResultScreen(),
+                screen: ResultScreen(_qrList[pos]),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.slideUp,
               );
@@ -159,8 +183,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                 ),
               ),
-              title: Text('title $pos'),
-              subtitle: Text('data created'),
+              title: Text(_qrList[pos].value),
+              subtitle: Text(_qrList[pos].typeToString()),
             ),
           );
         },

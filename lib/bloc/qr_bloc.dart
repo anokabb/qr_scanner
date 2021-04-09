@@ -7,7 +7,7 @@ import '../models/QR.dart';
 part 'qr_event.dart';
 
 class QrBloc extends Bloc<QrEvent, List<QR>> {
-  QrBloc(List<QR> initialState) : super([]);
+  QrBloc(List<QR> initialState) : super(initialState);
 
   @override
   Stream<List<QR>> mapEventToState(

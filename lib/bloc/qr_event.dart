@@ -31,7 +31,7 @@ class UpdateQR extends QrEvent {
   late QR newQr;
   late int id;
 
-  UpdateQR(int index, QR qr) {
+  UpdateQR(QR qr, int index) {
     newQr = qr;
     id = index;
   }

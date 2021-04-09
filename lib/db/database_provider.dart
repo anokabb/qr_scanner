@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
+import 'package:qr_scanner/bloc/qr_bloc.dart';
 import '../models/QR.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -48,7 +51,7 @@ class DatabaseProvider {
     );
   }
 
-  Future<List<QR>> getFoods() async {
+  Future<List<QR>> getQrs(BuildContext context) async {
     final db = await database;
 
     var QRs = await db.query(TABLE_QR,
@@ -59,34 +62,42 @@ class DatabaseProvider {
     QRs.forEach((currentQR) {
       QR_List.add(QR.fromMap(currentQR));
     });
+    BlocProvider.of<QrBloc>(context).add(SetQrs(QR_List));
 
     return QR_List;
   }
 
-  Future<QR> insert(QR qr) async {
+  Future<QR> insert(BuildContext context, QR qr) async {
     final db = await database;
     qr.id = await db.insert(TABLE_QR, qr.toMap());
+    BlocProvider.of<QrBloc>(context).add(AddQR(qr));
     return qr;
   }
 
-  Future<int> delete(int id) async {
+  Future<int> delete(BuildContext context, int id) async {
     final db = await database;
 
-    return await db.delete(
+    int res = await db.delete(
       TABLE_QR,
       where: "id = ?",
       whereArgs: [id],
     );
+    if (res != 0) {
+      BlocProvider.of<QrBloc>(context).add(DeleteQR(id));
+    }
+    return res;
   }
 
-  Future<int> update(QR qr) async {
+  Future<int> update(BuildContext context, QR qr) async {
     final db = await database;
 
-    return await db.update(
+    int res = await db.update(
       TABLE_QR,
       qr.toMap(),
       where: "id = ?",
       whereArgs: [qr.id],
     );
+    BlocProvider.of<QrBloc>(context).add(UpdateQR(qr, qr.id!));
+    return res;
   }
 }
