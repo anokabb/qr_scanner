@@ -2,8 +2,9 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:qr_scanner/db/database_provider.dart';
-import 'package:qr_scanner/models/QR.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import '../../db/database_provider.dart';
+import '../../models/QR.dart';
 import '../../components/CustomAppBar.dart';
 import '../../components/txtField.dart';
 import '../ResultScreen/ResultScreen.dart';
@@ -16,6 +17,8 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+  ValueNotifier<String> text = ValueNotifier('');
+
   final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -39,10 +42,13 @@ class _CreateScreenState extends State<CreateScreen> {
             depth: 10,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
-                color: Colors.black26,
-                height: 200,
-                width: 200,
+              child: ValueListenableBuilder<String>(
+                valueListenable: text,
+                builder: (_, value, __) => QrImage(
+                  data: value,
+                  version: QrVersions.auto,
+                  size: 200.0,
+                ),
               ),
             ),
           ),
@@ -54,7 +60,10 @@ class _CreateScreenState extends State<CreateScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
                   child: TxtField(
                     context,
+                    controler: _controller,
                     hint: 'Type Text ...',
+                    lines: 3,
+                    onChanged: (s) => text.value = s,
                   ),
                 ),
               ),
@@ -74,8 +83,8 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   void createQR() {
-    if (!_controller.text.isEmpty) {
-      QR Qr = QR(value: _controller.text, type: QR.TEXT, isScanned: true);
+    if (_controller.text.isNotEmpty) {
+      QR Qr = QR(value: _controller.text, type: QR.TEXT, isScanned: false);
       DatabaseProvider.db.insert(context, Qr);
       pushNewScreen(
         context,
