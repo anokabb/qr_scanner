@@ -69,11 +69,14 @@ class _ResultScreenState extends State<ResultScreen> {
                         ],
                       ),
                       SizedBox(height: 8),
-                      SelectableText(
-                        widget.Qr.value,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxHeight: 200),
+                        child: SelectableText(
+                          widget.Qr.value,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ],

@@ -62,6 +62,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     context,
                     controler: _controller,
                     hint: 'Type Text ...',
+                    autofocus: false,
                     lines: 3,
                     onChanged: (s) => text.value = s,
                   ),
