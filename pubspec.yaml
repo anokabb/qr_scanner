@@ -14,11 +14,12 @@ dependencies:
   clay_containers: ^0.3.2
   cupertino_icons: ^1.0.2
   flutter_bloc: ^7.0.0
+  flutter_qr_reader: ^1.0.5
   fluttertoast: ^8.0.3
   image_picker: ^0.7.4
   persistent_bottom_nav_bar: ^4.0.2
   qr_code_scanner: ^0.4.0
-  flutter_qr_reader: ^1.0.5
+  sqflite: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:
