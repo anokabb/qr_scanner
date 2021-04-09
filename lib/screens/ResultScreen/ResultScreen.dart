@@ -1,7 +1,8 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_scanner/models/QR.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import '../../models/QR.dart';
 import '../../components/CuperIcon.dart';
 import '../../components/CustomAppBar.dart';
 
@@ -36,7 +37,6 @@ class _ResultScreenState extends State<ResultScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ClayContainer(
@@ -54,7 +54,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Text',
+                            widget.Qr.typeToString(),
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
@@ -69,8 +69,8 @@ class _ResultScreenState extends State<ResultScreen> {
                         ],
                       ),
                       SizedBox(height: 8),
-                      Text(
-                        'Text',
+                      SelectableText(
+                        widget.Qr.value,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -116,11 +116,16 @@ class _ResultScreenState extends State<ResultScreen> {
                   depth: 10,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      color: Colors.black26,
-                      height: 200,
-                      width: 200,
+                    child: QrImage(
+                      data: widget.Qr.value,
+                      version: QrVersions.auto,
+                      size: 200,
                     ),
+                    // Container(
+                    //   color: Colors.black26,
+                    //   height: 200,
+                    //   width: 200,
+                    // ),
                   ),
                 ),
                 Column(

@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:qr_scanner/bloc/qr_bloc.dart';
-import 'package:qr_scanner/db/database_provider.dart';
-import 'package:qr_scanner/models/QR.dart';
+import '../../bloc/qr_bloc.dart';
+import '../../db/database_provider.dart';
+import '../../models/QR.dart';
 import '../../components/CustomAppBar.dart';
 import '../../cubit/history_cubit.dart';
 import '../ResultScreen/ResultScreen.dart';
@@ -26,15 +26,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<QrBloc>(
-          create: (BuildContext context) => QrBloc([]),
-        ),
-        BlocProvider<HistoryCubit>(
-          create: (BuildContext context) => HistoryCubit(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => HistoryCubit(),
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(

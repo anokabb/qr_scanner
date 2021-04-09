@@ -1,4 +1,4 @@
-import 'package:qr_scanner/db/database_provider.dart';
+import '../db/database_provider.dart';
 
 class QR {
   int? id;
