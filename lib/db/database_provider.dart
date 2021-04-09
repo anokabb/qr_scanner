@@ -1,5 +1,5 @@
 import 'package:path/path.dart';
-import 'package:qr_scanner/models/QR.dart';
+import '../models/QR.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_scanner/screens/MainScreen/MainScreen.dart';
+import 'screens/MainScreen/MainScreen.dart';
 
 void main() {
   runApp(MyApp());

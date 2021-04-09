@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:qr_scanner/components/CuperIcon.dart';
-import 'package:qr_scanner/components/CustomAppBar.dart';
-import 'package:qr_scanner/cubit/history_cubit.dart';
-import 'package:qr_scanner/screens/ResultScreen/ResultScreen.dart';
+import '../../components/CuperIcon.dart';
+import '../../components/CustomAppBar.dart';
+import '../../cubit/history_cubit.dart';
+import '../ResultScreen/ResultScreen.dart';
 
 class HistoryScreen extends StatefulWidget {
   HistoryScreen();
