@@ -88,7 +88,7 @@ class QR {
       case TEXT:
         return 'Text';
       case URL:
-        return 'Link';
+        return 'URL';
       case PHONE:
         return 'Phone Number';
       case EMAIL:

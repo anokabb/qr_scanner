@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../../db/database_provider.dart';
-import '../../models/QR.dart';
-import '../../components/CustomAppBar.dart';
-import '../../components/txtField.dart';
-import '../ResultScreen/ResultScreen.dart';
+import '../db/database_provider.dart';
+import '../models/QR.dart';
+import '../components/CustomAppBar.dart';
+import '../components/txtField.dart';
+import 'ResultScreen.dart';
 
 class CreateScreen extends StatefulWidget {
   CreateScreen();

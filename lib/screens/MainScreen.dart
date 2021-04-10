@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import '../../bloc/qr_bloc.dart';
-import '../CreateScreen/CreateScreen.dart';
-import '../HistoryScreen/HistoryScreen.dart';
-import '../ScannerScreen/ScannerScreen.dart';
+import '../bloc/qr_bloc.dart';
+import 'CreateScreen.dart';
+import 'HistoryScreen.dart';
+import 'ScannerScreen.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen();

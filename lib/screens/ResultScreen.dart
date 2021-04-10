@@ -2,9 +2,9 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../../models/QR.dart';
-import '../../components/CuperIcon.dart';
-import '../../components/CustomAppBar.dart';
+import '../models/QR.dart';
+import '../components/CuperIcon.dart';
+import '../components/CustomAppBar.dart';
 
 class ResultScreen extends StatefulWidget {
   final QR Qr;

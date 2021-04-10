@@ -6,11 +6,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../db/database_provider.dart';
-import '../../models/QR.dart';
-import '../../cubit/flash_cubit.dart';
+import '../db/database_provider.dart';
+import '../models/QR.dart';
+import '../cubit/flash_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../ResultScreen/ResultScreen.dart';
+import 'ResultScreen.dart';
 
 class ScannerScreen extends StatefulWidget {
   ScannerScreen();
