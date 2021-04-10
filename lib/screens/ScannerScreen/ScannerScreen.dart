@@ -138,8 +138,18 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
+      controller.pauseCamera();
       print(scanData);
+      QR Qr = QR(value: scanData.code, type: QR.TEXT, isScanned: true);
+      DatabaseProvider.db.insert(context, Qr);
+      await pushNewScreen(
+        context,
+        screen: ResultScreen(Qr),
+        withNavBar: false,
+        pageTransitionAnimation: PageTransitionAnimation.slideUp,
+      );
+      controller.resumeCamera();
     });
   }
 

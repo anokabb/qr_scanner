@@ -145,7 +145,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                 ),
               ),
-              title: Text(_qrList[pos].value),
+              title: Text(
+                _qrList[pos].value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
               subtitle: Text(_qrList[pos].typeToString()),
             ),
           );
@@ -176,7 +180,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                 ),
               ),
-              title: Text(_qrList[pos].value),
+              title: Text(
+                _qrList[pos].value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
               subtitle: Text(_qrList[pos].typeToString()),
             ),
           );
