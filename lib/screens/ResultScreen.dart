@@ -15,7 +15,6 @@ import '../components/CuperIcon.dart';
 import '../components/CustomAppBar.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 
@@ -150,11 +149,6 @@ class _ResultScreenState extends State<ResultScreen> {
                         size: 200,
                       ),
                     ),
-                    // Container(
-                    //   color: Colors.black26,
-                    //   height: 200,
-                    //   width: 200,
-                    // ),
                   ),
                 ),
                 Column(
@@ -183,16 +177,12 @@ class _ResultScreenState extends State<ResultScreen> {
                               .capture()
                               .then((Uint8List? image) async {
                             final params = SaveFileDialogParams(
-                                sourceFilePath: "path_of_file_to_save");
+                              data: image,
+                              fileName: '${DateTime.now().toString()}.jpg',
+                            );
                             final filePath = await FlutterFileDialog.saveFile(
                                 params: params);
                             print(filePath);
-
-                            // if (result != null) {
-                            //   Fluttertoast.showToast(
-                            //     msg: 'Saved in : ${result}',
-                            //   );
-                            // }
                           }).catchError((onError) {
                             print(onError);
                           });

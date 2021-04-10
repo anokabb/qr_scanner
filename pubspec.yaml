@@ -26,7 +26,6 @@ dependencies:
   url_launcher: ^6.0.3
   flutter_web_browser: ^0.14.0
   screenshot: ^1.0.0-nullsafety.1
-  image_gallery_saver: "^1.6.9"
   flutter_file_dialog: ^2.0.0
 
 dev_dependencies:
