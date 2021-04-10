@@ -20,6 +20,7 @@ class _CreateScreenState extends State<CreateScreen> {
   ValueNotifier<String> text = ValueNotifier('');
 
   final TextEditingController _controller = TextEditingController();
+  final FocusNode focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,68 +32,80 @@ class _CreateScreenState extends State<CreateScreen> {
           'Create QR',
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 20),
-          ClayContainer(
-            color: Theme.of(context).canvasColor,
-            borderRadius: 16,
-            spread: 10,
-            depth: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ValueListenableBuilder<String>(
-                valueListenable: text,
-                builder: (_, value, __) => QrImage(
-                  data: value,
-                  version: QrVersions.auto,
-                  size: 200.0,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 20),
+              ClayContainer(
+                color: Theme.of(context).canvasColor,
+                borderRadius: 16,
+                spread: 10,
+                depth: 10,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
-                  child: TxtField(
-                    context,
-                    controler: _controller,
-                    hint: 'Type Text ...',
-                    autofocus: false,
-                    lines: 3,
-                    onChanged: (s) => text.value = s,
+                  padding: const EdgeInsets.all(16.0),
+                  child: ValueListenableBuilder<String>(
+                    valueListenable: text,
+                    builder: (_, value, __) => QrImage(
+                      data: value,
+                      version: QrVersions.auto,
+                      size: 200.0,
+                    ),
                   ),
                 ),
               ),
-              CupertinoButton(
-                child: Icon(
-                  Icons.done_outline_rounded,
-                  size: 30,
-                  color: Theme.of(context).accentColor,
-                ),
-                onPressed: createQR,
-              )
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+                      child: TxtField(
+                        context,
+                        controler: _controller,
+                        focusNode: focusNode,
+                        hint: 'Type Text ...',
+                        autofocus: false,
+                        lines: 3,
+                        onChanged: (s) => text.value = s,
+                      ),
+                    ),
+                  ),
+                  CupertinoButton(
+                    child: Icon(
+                      Icons.done_outline_rounded,
+                      size: 32,
+                      color: Theme.of(context).accentColor,
+                    ),
+                    onPressed: createQR,
+                  )
+                ],
+              ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
 
   void createQR() {
     if (_controller.text.isNotEmpty) {
-      QR Qr = QR(value: _controller.text, type: QR.TEXT, isScanned: false);
+      FocusScope.of(context).requestFocus(FocusNode());
+
+      QR Qr = QR(value: _controller.text, isScanned: false);
       DatabaseProvider.db.insert(context, Qr);
+
       pushNewScreen(
         context,
         screen: ResultScreen(Qr),
         withNavBar: false,
         pageTransitionAnimation: PageTransitionAnimation.slideUp,
       );
+      _controller.text = '';
     }
   }
 }

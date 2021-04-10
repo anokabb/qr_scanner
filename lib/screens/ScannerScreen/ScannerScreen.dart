@@ -121,7 +121,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         msg: 'No Qr code found',
       );
     } else {
-      QR Qr = QR(value: qrData, type: QR.TEXT, isScanned: true);
+      QR Qr = QR(value: qrData, isScanned: true);
       DatabaseProvider.db.insert(context, Qr);
       pushNewScreen(
         context,
@@ -141,7 +141,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     controller.scannedDataStream.listen((scanData) async {
       controller.pauseCamera();
       print(scanData);
-      QR Qr = QR(value: scanData.code, type: QR.TEXT, isScanned: true);
+      QR Qr = QR(value: scanData.code, isScanned: true);
       DatabaseProvider.db.insert(context, Qr);
       await pushNewScreen(
         context,
