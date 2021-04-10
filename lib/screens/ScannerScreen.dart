@@ -47,7 +47,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   overlay: QrScannerOverlayShape(
                     borderColor: Colors.white,
                     borderWidth: 6,
-                    overlayColor: Colors.black.withOpacity(0.3),
+                    overlayColor: Colors.black.withOpacity(0.35),
                     borderRadius: 20,
                   ),
                 ),

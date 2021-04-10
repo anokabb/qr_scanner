@@ -62,7 +62,8 @@ class DatabaseProvider {
     QRs.forEach((currentQR) {
       QR_List.add(QR.fromMap(currentQR));
     });
-    BlocProvider.of<QrBloc>(context).add(SetQrs(QR_List));
+
+    BlocProvider.of<QrBloc>(context).add(SetQrs(QR_List.reversed.toList()));
 
     return QR_List;
   }
@@ -82,9 +83,9 @@ class DatabaseProvider {
       where: "id = ?",
       whereArgs: [id],
     );
-    if (res != 0) {
-      BlocProvider.of<QrBloc>(context).add(DeleteQR(id));
-    }
+    // if (res != 0) {
+    BlocProvider.of<QrBloc>(context).add(DeleteQR(id));
+    // }
     return res;
   }
 

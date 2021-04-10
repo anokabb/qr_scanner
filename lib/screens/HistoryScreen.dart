@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/components/QrIconType.dart';
 import '../bloc/qr_bloc.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -119,77 +120,84 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
-  ListView _getHistoryList(HistoryState state, List<QR> Qrs) {
-    if (state is HistoryScanned) {
-      List<QR> _qrList = Qrs.where((qr) => qr.isScanned).toList();
-      return ListView.builder(
-        itemCount: _qrList.length,
-        itemBuilder: (_, pos) {
-          return GestureDetector(
-            onTap: () {
-              pushNewScreen(
-                context,
-                screen: ResultScreen(_qrList[pos]),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.slideUp,
-              );
-            },
-            child: ListTile(
-              leading: ClayContainer(
-                borderRadius: 50,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.link,
-                    color: Theme.of(context).accentColor,
-                  ),
+  Widget _getHistoryList(HistoryState state, List<QR> Qrs) {
+    List<QR> _qrList = Qrs.where((qr) => !(state is HistoryScanned)).toList();
+
+    if (_qrList.isEmpty) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Image.asset('images/noData.gif'),
+              Positioned(
+                bottom: 0,
+                child: Text(
+                  'No Data',
+                  style: TextStyle(
+                      color: Color.fromRGBO(212, 194, 255, 1), fontSize: 30),
                 ),
-              ),
-              title: Text(
-                _qrList[pos].value,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              subtitle: Text(_qrList[pos].typeToString()),
-            ),
-          );
-        },
-      );
-    } else {
-      List<QR> _qrList = Qrs.where((qr) => !qr.isScanned).toList();
-      return ListView.builder(
-        itemCount: _qrList.length,
-        itemBuilder: (_, pos) {
-          return GestureDetector(
-            onTap: () {
-              pushNewScreen(
-                context,
-                screen: ResultScreen(_qrList[pos]),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.slideUp,
-              );
-            },
-            child: ListTile(
-              leading: ClayContainer(
-                borderRadius: 50,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.link,
-                    color: Theme.of(context).accentColor,
-                  ),
-                ),
-              ),
-              title: Text(
-                _qrList[pos].value,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              subtitle: Text(_qrList[pos].typeToString()),
-            ),
-          );
-        },
+              )
+            ],
+          ),
+        ],
       );
     }
+    return ListView.builder(
+      itemCount: _qrList.length,
+      itemBuilder: (_, pos) {
+        return InkWell(
+          onTap: () {
+            pushNewScreen(
+              context,
+              screen: ResultScreen(_qrList[pos]),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.slideUp,
+            );
+          },
+          child: Dismissible(
+            key: UniqueKey(),
+            background: Container(
+              color: Colors.red,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Icon(
+                    Icons.delete_outline_outlined,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+            ),
+            direction: DismissDirection.startToEnd,
+            onDismissed: (direction) {
+              print(_qrList[pos].id);
+              DatabaseProvider.db.delete(context, _qrList[pos].id!);
+            },
+            child: ListTile(
+              leading: ClayContainer(
+                borderRadius: 50,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    getIconType(_qrList[pos].type!),
+                    color: Theme.of(context).accentColor,
+                  ),
+                ),
+              ),
+              title: Text(
+                _qrList[pos].value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Text(_qrList[pos].typeToString()),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

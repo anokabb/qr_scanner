@@ -17,15 +17,17 @@ class QrBloc extends Bloc<QrEvent, List<QR>> {
       yield event.QrList;
     } else if (event is AddQR) {
       List<QR> newState = List.from(state);
-      newState.add(event.newQR);
+      newState.insert(0, event.newQR);
       yield newState;
     } else if (event is DeleteQR) {
       List<QR> newState = List.from(state);
-      newState.removeAt(event.id);
+      newState
+          .removeAt(newState.indexWhere((element) => element.id == event.id));
       yield newState;
     } else if (event is UpdateQR) {
       List<QR> newState = List.from(state);
-      newState[event.id] = event.newQr;
+      newState[newState.indexWhere((element) => element.id == event.id)] =
+          event.newQr;
       yield newState;
     }
   }
