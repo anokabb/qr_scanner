@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:qr_scanner/cubit/theme_cubit.dart';
 import 'screens/MainScreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: await getApplicationDocumentsDirectory());
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'QR Scanner',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Color.fromRGBO(98, 0, 238, 1),
-        accentColor: Color.fromRGBO(98, 0, 238, 1),
-        // primaryColor: Color.fromRGBO(91, 53, 141, 1),
-        backgroundColor: Colors.white,
-        canvasColor: Color(0xFFF2F2F2),
+    return BlocProvider(
+      create: (context) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'QR Scanner',
+            debugShowCheckedModeBanner: false,
+            theme: state.getTheme(),
+            themeMode: ThemeMode.light,
+            home: MainScreen(),
+          );
+        },
       ),
-      themeMode: ThemeMode.light,
-      home: MainScreen(),
     );
   }
 }
