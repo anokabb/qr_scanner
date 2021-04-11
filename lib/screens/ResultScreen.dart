@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_scanner/components/QrIconType.dart';
+import 'package:qr_scanner/cubit/theme_cubit.dart';
 import 'package:share/share.dart';
 import '../models/QR.dart';
 import '../components/CuperIcon.dart';
@@ -55,7 +57,8 @@ class _ResultScreenState extends State<ResultScreen> {
               child: ClayContainer(
                 color: Theme.of(context).canvasColor,
                 borderRadius: 16,
-                spread: 10,
+                spread:
+                    BlocProvider.of<ThemeCubit>(context).state.isDark ? 0 : 10,
                 depth: 10,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -69,7 +72,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           Text(
                             widget.Qr.typeToString(),
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Theme.of(context).splashColor,
                               fontSize: 20,
                             ),
                           ),
@@ -87,7 +90,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         child: SelectableText(
                           widget.Qr.value,
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Theme.of(context).splashColor,
                             fontSize: 20,
                           ),
                         ),
@@ -137,9 +140,13 @@ class _ResultScreenState extends State<ResultScreen> {
                   width: 46,
                 ),
                 ClayContainer(
-                  color: Theme.of(context).canvasColor,
+                  color: BlocProvider.of<ThemeCubit>(context).state.isDark
+                      ? Colors.white
+                      : Theme.of(context).canvasColor,
                   borderRadius: 16,
-                  spread: 10,
+                  spread: BlocProvider.of<ThemeCubit>(context).state.isDark
+                      ? 0
+                      : 10,
                   depth: 10,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),

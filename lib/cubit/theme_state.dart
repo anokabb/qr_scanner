@@ -5,22 +5,6 @@ class ThemeState {
   ThemeState({
     required this.isDark,
   });
-  ThemeData lightThemeData = ThemeData(
-    primaryColor: Color.fromRGBO(98, 0, 238, 1),
-    accentColor: Color.fromRGBO(98, 0, 238, 1),
-    backgroundColor: Colors.white,
-    canvasColor: Color(0xFFF2F2F2),
-  );
-  ThemeData darkThemeData = ThemeData(
-    primaryColor: Colors.white,
-    accentColor: Colors.white,
-    backgroundColor: Colors.black,
-    canvasColor: Color(0xFFF2F2F2),
-  );
-
-  ThemeData getTheme() {
-    return isDark ? darkThemeData : lightThemeData;
-  }
 
   Map<String, dynamic> toMap() {
     return {

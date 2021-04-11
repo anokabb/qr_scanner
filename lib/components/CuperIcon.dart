@@ -20,7 +20,7 @@ class CuperIcon extends StatelessWidget {
           Icon(
             icon,
             size: 30,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).primaryColor,
           ),
           text == null
               ? Container()
@@ -29,7 +29,7 @@ class CuperIcon extends StatelessWidget {
                   child: Text(
                     text!,
                     style: TextStyle(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 )

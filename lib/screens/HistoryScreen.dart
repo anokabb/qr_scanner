@@ -61,7 +61,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor.withOpacity(
+                              color: Theme.of(context).primaryColor.withOpacity(
                                   state is HistoryScanned ? 1 : 0.5),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50)),
@@ -84,7 +84,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor.withOpacity(
+                              color: Theme.of(context).primaryColor.withOpacity(
                                   state is HistoryScanned ? 0.5 : 1),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50)),
@@ -192,7 +192,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
                           getIconType(_qrList[pos].type!),
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                     ),

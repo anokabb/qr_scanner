@@ -65,7 +65,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                         onPressed: pickImage,
                         child: Icon(
                           Icons.image_rounded,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                       CupertinoButton(
@@ -75,7 +75,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                         },
                         child: Icon(
                           Icons.flip_camera_ios_outlined,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                       BlocBuilder<FlashCubit, FlashState>(
@@ -98,7 +98,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                               state is FlashOn
                                   ? Icons.flash_on_rounded
                                   : Icons.flash_off_rounded,
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                           );
                         },

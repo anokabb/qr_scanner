@@ -30,74 +30,73 @@ class _SettingsScreenState extends State<SettingsScreen> {
           'Settings',
         ),
       ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SettingItem(
-                title: 'Theme',
-                onTap: () {
-                  BlocProvider.of<ThemeCubit>(context).changeTheme();
-                },
-                child: Row(
-                  children: [
-                    Text(
-                      'Light',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).accentColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SettingItem(
+              title: 'Theme',
+              onTap: () {
+                BlocProvider.of<ThemeCubit>(context).changeTheme();
+              },
+              child: Row(
+                children: [
+                  Text(
+                    BlocProvider.of<ThemeCubit>(context).state.isDark
+                        ? 'Dark'
+                        : 'Light',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.ac_unit,
-                      color: Theme.of(context).accentColor,
-                      size: 30,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Icon(
+                    BlocProvider.of<ThemeCubit>(context).state.isDark
+                        ? Icons.nights_stay_rounded
+                        : Icons.wb_sunny,
+                    color: Theme.of(context).primaryColor,
+                    size: 30,
+                  ),
+                ],
               ),
-              SettingItem(
-                title: 'Rate App',
-                onTap: () {},
-                child: Row(
-                  children: List.generate(
-                    5,
-                    (index) => Icon(
-                      Icons.star_border_outlined,
-                      color: Theme.of(context).accentColor,
-                      size: 30,
-                    ),
+            ),
+            SettingItem(
+              title: 'Rate App',
+              onTap: () {},
+              child: Row(
+                children: List.generate(
+                  5,
+                  (index) => Icon(
+                    Icons.star_border_outlined,
+                    color: Theme.of(context).primaryColor,
+                    size: 30,
                   ),
                 ),
               ),
-              SettingItem(
-                title: 'More Apps',
-                onTap: () {},
-                child: Icon(
-                  Icons.apps_rounded,
-                  color: Theme.of(context).accentColor,
-                  size: 30,
-                ),
+            ),
+            SettingItem(
+              title: 'More Apps',
+              onTap: () {},
+              child: Icon(
+                Icons.apps_rounded,
+                color: Theme.of(context).primaryColor,
+                size: 30,
               ),
-              SettingItem(
-                title: 'Share App',
-                onTap: () {},
-                child: Icon(
-                  Icons.share_rounded,
-                  color: Theme.of(context).accentColor,
-                  size: 30,
-                ),
+            ),
+            SettingItem(
+              title: 'Share App',
+              onTap: () {},
+              child: Icon(
+                Icons.share_rounded,
+                color: Theme.of(context).primaryColor,
+                size: 30,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -121,9 +120,9 @@ class SettingItem extends StatelessWidget {
       child: ClayContainer(
         color: Theme.of(context).canvasColor,
         borderRadius: 16,
-        spread: 10,
+        spread: BlocProvider.of<ThemeCubit>(context).state.isDark ? 0 : 10,
         depth: 10,
-        child: InkWell(
+        child: GestureDetector(
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -134,7 +133,7 @@ class SettingItem extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontSize: 24,
-                    color: Colors.black,
+                    color: Theme.of(context).splashColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

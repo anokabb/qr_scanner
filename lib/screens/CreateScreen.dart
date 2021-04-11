@@ -1,8 +1,10 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_scanner/cubit/theme_cubit.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
 import '../components/CustomAppBar.dart';
@@ -42,9 +44,12 @@ class _CreateScreenState extends State<CreateScreen> {
             children: <Widget>[
               SizedBox(height: 20),
               ClayContainer(
-                color: Theme.of(context).canvasColor,
+                color: BlocProvider.of<ThemeCubit>(context).state.isDark
+                    ? Colors.white
+                    : Theme.of(context).canvasColor,
                 borderRadius: 16,
-                spread: 10,
+                spread:
+                    BlocProvider.of<ThemeCubit>(context).state.isDark ? 0 : 10,
                 depth: 10,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -79,7 +84,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     child: Icon(
                       Icons.done_outline_rounded,
                       size: 32,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                     onPressed: createQR,
                   )

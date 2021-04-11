@@ -1,5 +1,7 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_scanner/cubit/theme_cubit.dart';
 
 class TxtField extends StatelessWidget {
   BuildContext context;
@@ -39,14 +41,14 @@ class TxtField extends StatelessWidget {
     return ClayContainer(
       color: Theme.of(context).canvasColor,
       borderRadius: 16,
-      spread: 10,
+      spread: BlocProvider.of<ThemeCubit>(context).state.isDark ? 0 : 10,
       depth: 10,
       child: TextField(
         autofocus: autofocus,
         onSubmitted: onSubmit,
         onChanged: onChanged,
         enabled: enabled,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Theme.of(context).splashColor),
         controller: controler,
         focusNode: focusNode,
         decoration: InputDecoration(
@@ -57,12 +59,12 @@ class TxtField extends StatelessWidget {
           hintStyle: TextStyle(color: Color.fromRGBO(129, 129, 129, 1)),
           labelStyle: TextStyle(color: Color.fromRGBO(129, 129, 129, 1)),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: Theme.of(context).canvasColor,
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey.withOpacity(0.3)),
               borderRadius: BorderRadius.circular(16)),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).accentColor),
+              borderSide: BorderSide(color: Theme.of(context).primaryColor),
               borderRadius: BorderRadius.circular(16)),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide.none,

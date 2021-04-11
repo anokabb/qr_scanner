@@ -13,6 +13,24 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  ThemeData lightThemeData = ThemeData(
+    primaryColor: Color.fromRGBO(98, 0, 238, 1),
+    // accentColor: Color.fromRGBO(98, 0, 238, 1),
+    appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(98, 0, 238, 1)),
+    backgroundColor: Colors.white,
+    splashColor: Colors.black,
+    dialogBackgroundColor: Color.fromRGBO(98, 0, 238, 1),
+    canvasColor: Color(0xFFF2F2F2),
+  );
+
+  ThemeData darkThemeData = ThemeData(
+    primaryColor: Color.fromRGBO(98, 0, 238, 1),
+    // accentColor: Color.fromRGBO(98, 0, 238, 1),
+    appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(44, 44, 44, 1)),
+    backgroundColor: Colors.black,
+    splashColor: Colors.white,
+    canvasColor: Color.fromRGBO(44, 44, 44, 1),
+  );
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -22,8 +40,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'QR Scanner',
             debugShowCheckedModeBanner: false,
-            theme: state.getTheme(),
-            themeMode: ThemeMode.light,
+            theme: lightThemeData,
+            darkTheme: darkThemeData,
+            themeMode: state.isDark ? ThemeMode.dark : ThemeMode.light,
             home: MainScreen(),
           );
         },
