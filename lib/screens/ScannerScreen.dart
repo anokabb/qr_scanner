@@ -41,16 +41,19 @@ class _ScannerScreenState extends State<ScannerScreen> {
           return Expanded(
             child: Stack(
               children: [
-                QRView(
-                  key: qrKey,
-                  onQRViewCreated: _onQRViewCreated,
-                  overlay: QrScannerOverlayShape(
-                    borderColor: Colors.white,
-                    borderWidth: 6,
-                    overlayColor: Colors.black.withOpacity(0.35),
-                    borderRadius: 20,
-                  ),
+                Container(
+                  color: Colors.yellow,
                 ),
+                // QRView(
+                //   key: qrKey,
+                //   onQRViewCreated: _onQRViewCreated,
+                //   overlay: QrScannerOverlayShape(
+                //     borderColor: Colors.white,
+                //     borderWidth: 6,
+                //     overlayColor: Colors.black.withOpacity(0.35),
+                //     borderRadius: 20,
+                //   ),
+                // ),
                 Positioned(
                   right: 10,
                   left: 10,

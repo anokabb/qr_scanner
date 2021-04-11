@@ -54,7 +54,7 @@ class DatabaseProvider {
   Future<List<QR>> getQrs(BuildContext context) async {
     final db = await database;
 
-    var QRs = await db.query(TABLE_QR,
+    List<Map<String, Object?>> QRs = await db.query(TABLE_QR,
         columns: [COLUMN_ID, COLUMN_VALUE, COLUMN_TYPE, COLUMN_IS_SCANNED]);
 
     List<QR> QR_List = [];
@@ -72,6 +72,8 @@ class DatabaseProvider {
     final db = await database;
     qr.id = await db.insert(TABLE_QR, qr.toMap());
     BlocProvider.of<QrBloc>(context).add(AddQR(qr));
+
+    print('database insert id : ${qr.id}');
     return qr;
   }
 
@@ -83,6 +85,7 @@ class DatabaseProvider {
       where: "id = ?",
       whereArgs: [id],
     );
+    print('database delete id : $id');
     // if (res != 0) {
     BlocProvider.of<QrBloc>(context).add(DeleteQR(id));
     // }
@@ -98,6 +101,7 @@ class DatabaseProvider {
       where: "id = ?",
       whereArgs: [qr.id],
     );
+    print('database update id : ${qr.id}');
     BlocProvider.of<QrBloc>(context).add(UpdateQR(qr, qr.id!));
     return res;
   }

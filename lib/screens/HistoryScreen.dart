@@ -174,26 +174,37 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ),
             direction: DismissDirection.startToEnd,
             onDismissed: (direction) {
-              print(_qrList[pos].id);
+              print('onDismissed id : ' + _qrList[pos].id.toString());
               DatabaseProvider.db.delete(context, _qrList[pos].id!);
             },
-            child: ListTile(
-              leading: ClayContainer(
-                borderRadius: 50,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    getIconType(_qrList[pos].type!),
-                    color: Theme.of(context).accentColor,
+            child: Row(
+              children: [
+                Container(
+                  color: Colors.red,
+                  height: 70,
+                  width: 2,
+                ),
+                Expanded(
+                  child: ListTile(
+                    leading: ClayContainer(
+                      borderRadius: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          getIconType(_qrList[pos].type!),
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                    ),
+                    title: Text(
+                      _qrList[pos].value,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(_qrList[pos].typeToString()),
                   ),
                 ),
-              ),
-              title: Text(
-                _qrList[pos].value,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              subtitle: Text(_qrList[pos].typeToString()),
+              ],
             ),
           ),
         );
