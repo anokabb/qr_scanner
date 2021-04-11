@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(98, 0, 238, 1)),
     backgroundColor: Colors.white,
     splashColor: Colors.black,
-    // dialogBackgroundColor: Color.fromRGBO(98, 0, 238, 1),
+    buttonColor: Colors.white,
     canvasColor: Color(0xFFF2F2F2),
   );
 
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
     appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(44, 44, 44, 1)),
     backgroundColor: Colors.black,
     splashColor: Colors.white,
+    buttonColor: Color.fromRGBO(44, 44, 44, 1),
     canvasColor: Color.fromRGBO(44, 44, 44, 1),
   );
   @override

@@ -51,9 +51,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
+                  SizedBox(width: 8),
                   Icon(
                     BlocProvider.of<ThemeCubit>(context).state.isDark
                         ? Icons.nights_stay_rounded

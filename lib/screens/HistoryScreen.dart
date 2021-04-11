@@ -130,20 +130,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Image.asset('images/noData.gif'),
-              Positioned(
-                bottom: 0,
-                child: Text(
-                  'No Data',
-                  style: TextStyle(
-                      color: Color.fromRGBO(212, 194, 255, 1), fontSize: 30),
-                ),
-              )
-            ],
-          ),
+          Image.asset('images/noData.png'),
+          Text(
+            'No Data',
+            style: TextStyle(
+                color: Theme.of(context).primaryColor.withOpacity(0.7),
+                fontSize: 30),
+          )
         ],
       );
     }
