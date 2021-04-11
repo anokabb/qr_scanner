@@ -34,20 +34,19 @@ class _MainScreenState extends State<MainScreen> {
     return [
       PersistentBottomNavBarItem(
         icon: Icon(Icons.qr_code_scanner_rounded),
+        activeColorPrimary: Theme.of(context).primaryColor,
         title: ("Scan"),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.history),
+        activeColorPrimary: Theme.of(context).primaryColor,
         title: ("History"),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.create_outlined),
+        activeColorPrimary: Theme.of(context).primaryColor,
         title: ("Create"),
       ),
-      // PersistentBottomNavBarItem(
-      //   icon: Icon(Icons.create_outlined),
-      //   title: ("Create"),
-      // ),
     ];
   }
 
@@ -62,7 +61,8 @@ class _MainScreenState extends State<MainScreen> {
           screens: _buildScreens(),
           items: _navBarsItems(),
           confineInSafeArea: true,
-          backgroundColor: Colors.white, // Default is Colors.white.
+          backgroundColor: Theme.of(context).backgroundColor,
+
           handleAndroidBackButtonPress: true, // Default is true.
           resizeToAvoidBottomInset:
               true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -71,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
               true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
           decoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            colorBehindNavBar: Colors.white,
+            colorBehindNavBar: Theme.of(context).backgroundColor,
           ),
           popAllScreensOnTapOfSelectedTab: true,
           popActionScreens: PopActionScreensType.all,

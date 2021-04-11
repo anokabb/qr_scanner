@@ -120,8 +120,10 @@ class _ResultScreenState extends State<ResultScreen> {
                   text: 'Search',
                   onPressed: () async {
                     await FlutterWebBrowser.openWebPage(
-                      url: "https://www.google.com/search?q=" + widget.Qr.value,
-                    );
+                        url: "https://www.google.com/search?q=" +
+                            widget.Qr.value,
+                        customTabsOptions: CustomTabsOptions(
+                            toolbarColor: Theme.of(context).primaryColor));
                   },
                 ),
               ],

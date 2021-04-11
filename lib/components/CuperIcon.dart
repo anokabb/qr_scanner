@@ -20,12 +20,18 @@ class CuperIcon extends StatelessWidget {
           Icon(
             icon,
             size: 30,
+            color: Theme.of(context).accentColor,
           ),
           text == null
               ? Container()
               : Padding(
                   padding: const EdgeInsets.only(top: 4),
-                  child: Text(text!),
+                  child: Text(
+                    text!,
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
                 )
         ],
       ),

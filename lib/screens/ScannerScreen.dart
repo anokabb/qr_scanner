@@ -38,78 +38,85 @@ class _ScannerScreenState extends State<ScannerScreen> {
     return BlocProvider(
         create: (context) => FlashCubit(),
         child: BlocBuilder<FlashCubit, FlashState>(builder: (context, state) {
-          return Expanded(
-            child: Stack(
-              children: [
-                Container(
-                  color: Colors.yellow,
+          return Stack(
+            children: [
+              // Container(
+              //   color: Colors.yellow,
+              // ),
+              QRView(
+                key: qrKey,
+                onQRViewCreated: _onQRViewCreated,
+                overlay: QrScannerOverlayShape(
+                  borderColor: Colors.white,
+                  borderWidth: 6,
+                  overlayColor: Colors.black.withOpacity(0.35),
+                  borderRadius: 20,
                 ),
-                // QRView(
-                //   key: qrKey,
-                //   onQRViewCreated: _onQRViewCreated,
-                //   overlay: QrScannerOverlayShape(
-                //     borderColor: Colors.white,
-                //     borderWidth: 6,
-                //     overlayColor: Colors.black.withOpacity(0.35),
-                //     borderRadius: 20,
-                //   ),
-                // ),
-                Positioned(
-                  right: 10,
-                  left: 10,
-                  bottom: 20,
-                  child: Card(
-                    child: Row(
-                      children: <Widget>[
-                        CupertinoButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: pickImage,
-                          child: Icon(Icons.image_rounded),
+              ),
+              Positioned(
+                right: 10,
+                left: 10,
+                bottom: 20,
+                child: Card(
+                  child: Row(
+                    children: <Widget>[
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: pickImage,
+                        child: Icon(
+                          Icons.image_rounded,
+                          color: Theme.of(context).accentColor,
                         ),
-                        CupertinoButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () {
-                            controller.flipCamera();
-                          },
-                          child: Icon(Icons.flip_camera_ios_outlined),
-                        ),
-                        BlocBuilder<FlashCubit, FlashState>(
-                          builder: (context, state) {
-                            return CupertinoButton(
-                              padding: EdgeInsets.zero,
-                              onPressed: () {
-                                controller.toggleFlash();
-                                controller.getFlashStatus().then((turnedOn) {
-                                  if (turnedOn!) {
-                                    BlocProvider.of<FlashCubit>(context)
-                                        .flashOn();
-                                  } else {
-                                    BlocProvider.of<FlashCubit>(context)
-                                        .flashOff();
-                                  }
-                                });
-                              },
-                              child: Icon(state is FlashOn
-                                  ? Icons.flash_on_rounded
-                                  : Icons.flash_off_rounded),
-                            );
-                          },
-                        ),
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    ),
-                    color: Theme.of(context).backgroundColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
                       ),
-                    ),
-                    margin: EdgeInsets.zero,
-                    elevation: 6,
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          controller.flipCamera();
+                        },
+                        child: Icon(
+                          Icons.flip_camera_ios_outlined,
+                          color: Theme.of(context).accentColor,
+                        ),
+                      ),
+                      BlocBuilder<FlashCubit, FlashState>(
+                        builder: (context, state) {
+                          return CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              controller.toggleFlash();
+                              controller.getFlashStatus().then((turnedOn) {
+                                if (turnedOn!) {
+                                  BlocProvider.of<FlashCubit>(context)
+                                      .flashOn();
+                                } else {
+                                  BlocProvider.of<FlashCubit>(context)
+                                      .flashOff();
+                                }
+                              });
+                            },
+                            child: Icon(
+                              state is FlashOn
+                                  ? Icons.flash_on_rounded
+                                  : Icons.flash_off_rounded,
+                              color: Theme.of(context).accentColor,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   ),
-                )
-              ],
-            ),
+                  color: Theme.of(context).backgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                  margin: EdgeInsets.zero,
+                  elevation: 6,
+                ),
+              )
+            ],
           );
         }));
   }

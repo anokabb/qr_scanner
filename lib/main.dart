@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
       title: 'QR Scanner',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
+        primaryColor: Color.fromRGBO(98, 0, 238, 1),
+        accentColor: Color.fromRGBO(98, 0, 238, 1),
+        // primaryColor: Color.fromRGBO(91, 53, 141, 1),
         backgroundColor: Colors.white,
         canvasColor: Color(0xFFF2F2F2),
       ),
