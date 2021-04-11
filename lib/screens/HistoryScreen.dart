@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_scanner/components/QrIconType.dart';
+import 'package:qr_scanner/cubit/theme_cubit.dart';
 import '../bloc/qr_bloc.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -47,7 +48,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 child: ClayContainer(
                   color: Theme.of(context).canvasColor,
                   borderRadius: 50,
-                  spread: 10,
+                  spread: BlocProvider.of<ThemeCubit>(context).state.isDark
+                      ? 0
+                      : 10,
                   depth: 10,
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
@@ -188,6 +191,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   child: ListTile(
                     leading: ClayContainer(
                       borderRadius: 50,
+                      color: Theme.of(context).canvasColor,
+                      spread: BlocProvider.of<ThemeCubit>(context).state.isDark
+                          ? 0
+                          : 10,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
@@ -200,8 +207,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       _qrList[pos].value,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Theme.of(context).splashColor),
                     ),
-                    subtitle: Text(_qrList[pos].typeToString()),
+                    subtitle: Text(
+                      _qrList[pos].typeToString(),
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
                 ),
               ],

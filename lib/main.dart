@@ -15,17 +15,15 @@ void main() async {
 class MyApp extends StatelessWidget {
   ThemeData lightThemeData = ThemeData(
     primaryColor: Color.fromRGBO(98, 0, 238, 1),
-    // accentColor: Color.fromRGBO(98, 0, 238, 1),
     appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(98, 0, 238, 1)),
     backgroundColor: Colors.white,
     splashColor: Colors.black,
-    dialogBackgroundColor: Color.fromRGBO(98, 0, 238, 1),
+    // dialogBackgroundColor: Color.fromRGBO(98, 0, 238, 1),
     canvasColor: Color(0xFFF2F2F2),
   );
 
   ThemeData darkThemeData = ThemeData(
     primaryColor: Color.fromRGBO(98, 0, 238, 1),
-    // accentColor: Color.fromRGBO(98, 0, 238, 1),
     appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(44, 44, 44, 1)),
     backgroundColor: Colors.black,
     splashColor: Colors.white,
