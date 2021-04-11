@@ -5,6 +5,7 @@ import '../bloc/qr_bloc.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';
 import 'ScannerScreen.dart';
+import 'SettingsScreen.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen();
@@ -27,6 +28,7 @@ class _MainScreenState extends State<MainScreen> {
       ScannerScreen(),
       HistoryScreen(),
       CreateScreen(),
+      SettingsScreen(),
     ];
   }
 
@@ -46,6 +48,11 @@ class _MainScreenState extends State<MainScreen> {
         icon: Icon(Icons.create_outlined),
         activeColorPrimary: Theme.of(context).primaryColor,
         title: ("Create"),
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.settings_rounded),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        title: ("Settings"),
       ),
     ];
   }
