@@ -3,12 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
+import 'Utils/Translate.dart';
+import 'models/Languages.dart';
 import 'screens/MainScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
+  await Translate.instance!.setLanguage(Languages.ENGLISH_STR);
   runApp(MyApp());
 }
 

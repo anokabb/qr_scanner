@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_scanner/Utils/Translate.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -59,6 +60,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: Theme.of(context).primaryColor,
                     size: 30,
                   ),
+                ],
+              ),
+            ),
+            SettingItem(
+              title: translate('language'),
+              onTap: () {
+                // BlocProvider.of<ThemeCubit>(context).changeTheme();
+              },
+              child: DropM(
+                items: [
+                  DropdownMenuItem(child: Text('1')),
                 ],
               ),
             ),
