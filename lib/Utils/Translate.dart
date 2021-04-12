@@ -19,6 +19,9 @@ class Translate {
   }
 
   String translate(String key) {
+    if (currentLanguage == null) {
+      setLanguage(Languages.ENGLISH_STR);
+    }
     if (!currentLanguage!.keys.contains(key)) {
       return key;
     }

@@ -112,7 +112,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
               Expanded(
                 child: BlocConsumer<QrBloc, List<QR>>(
                   builder: (context, Qrs) {
-                    return _getHistoryList(state, Qrs);
+                    return RefreshIndicator(
+                        color: Theme.of(context).primaryColor,
+                        onRefresh: () {
+                          return DatabaseProvider.db.getQrs(context);
+                        },
+                        child: _getHistoryList(state, Qrs));
                   },
                   listener: (_, __) {},
                 ),

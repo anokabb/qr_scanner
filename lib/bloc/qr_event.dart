@@ -11,28 +11,28 @@ class SetQrs extends QrEvent {
   }
 }
 
-class AddQR extends QrEvent {
-  late QR newQR;
+// class AddQR extends QrEvent {
+//   late QR newQR;
 
-  AddQR(QR qr) {
-    newQR = qr;
-  }
-}
+//   AddQR(QR qr) {
+//     newQR = qr;
+//   }
+// }
 
-class DeleteQR extends QrEvent {
-  late int id;
+// class DeleteQR extends QrEvent {
+//   late int id;
 
-  DeleteQR(int index) {
-    id = index;
-  }
-}
+//   DeleteQR(int index) {
+//     id = index;
+//   }
+// }
 
-class UpdateQR extends QrEvent {
-  late QR newQr;
-  late int id;
+// class UpdateQR extends QrEvent {
+//   late QR newQr;
+//   late int id;
 
-  UpdateQR(QR qr, int index) {
-    newQr = qr;
-    id = index;
-  }
-}
+//   UpdateQR(QR qr, int index) {
+//     newQr = qr;
+//     id = index;
+//   }
+// }
