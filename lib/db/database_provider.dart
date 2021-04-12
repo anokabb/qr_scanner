@@ -12,6 +12,7 @@ class DatabaseProvider {
   static const String COLUMN_VALUE = "value";
   static const String COLUMN_TYPE = "type";
   static const String COLUMN_IS_SCANNED = "isScanned";
+  static const String COLUMN_DATE = "date";
 
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
@@ -44,7 +45,8 @@ class DatabaseProvider {
           "$COLUMN_ID INTEGER PRIMARY KEY,"
           "$COLUMN_VALUE TEXT,"
           "$COLUMN_TYPE INTEGER,"
-          "$COLUMN_IS_SCANNED INTEGER"
+          "$COLUMN_IS_SCANNED INTEGER,"
+          "$COLUMN_DATE INTEGER"
           ")",
         );
       },
@@ -54,13 +56,21 @@ class DatabaseProvider {
   Future<List<QR>> getQrs(BuildContext context) async {
     final db = await database;
 
-    List<Map<String, Object?>> QRs = await db.query(TABLE_QR,
-        columns: [COLUMN_ID, COLUMN_VALUE, COLUMN_TYPE, COLUMN_IS_SCANNED]);
+    List<Map<String, Object?>> QRs = await db.query(TABLE_QR, columns: [
+      COLUMN_ID,
+      COLUMN_VALUE,
+      COLUMN_TYPE,
+      COLUMN_IS_SCANNED,
+      COLUMN_DATE
+    ]);
 
     List<QR> QR_List = [];
 
     QRs.forEach((currentQR) {
       QR_List.add(QR.fromMap(currentQR));
+    });
+    QR_List.forEach((element) {
+      print(element.toString());
     });
 
     BlocProvider.of<QrBloc>(context).add(SetQrs(QR_List.reversed.toList()));

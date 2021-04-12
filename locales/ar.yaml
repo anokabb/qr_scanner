@@ -1,0 +1,147 @@
+delete: حذف
+cnfrmDelete: اضغط على تأكيد للحذف
+confirm: تأكيد
+messages: الرسائل
+search: بحث ...
+dltCon: حذف المحادثة
+dontMessages: ليس لديك رسائل
+shareUser: مشاركة المستخدم
+share: مشاركة
+newMsg: رسالة جديدة
+flwPeople: تابع الأشخاص لرؤيتهم هنا
+follow: متابعة
+unfollow: إلغاء المتابعة
+profileNoRecipes: عند إضافة وصفات ، ستظهر في ملفك الشخصي
+acntSett: إعدادات الحساب
+update: تحديث
+cnfrmUpdate: اضغط على تأكيد للتحديث
+profilePic: صورة الملف الشخصي
+userName: اسم المستخدم
+email: البريد الإلكتروني
+password: كلمة المرور
+coverPic: صورة الغلاف
+settings: الإعدادات
+theme: المظهر
+darkTheme: مظهر داكن
+account: الحساب
+acountSett: إعدادات الحساب
+signout: تسجيل الخروج
+cnfrmSignout: اضغط على تأكيد لتسجيل الخروج
+description: الوصف
+recipeName: اسم الوصفة
+recipeImage: صورة الوصفة
+addRecipes: إضافة وصفة
+addStep: أضف خطوة
+steps: الخطوات
+step: خطوة
+addIngredient: إضافة مكون
+ingredients: المكونات
+ingredient: مكون
+updateRecipe: تحديث الوصفة
+comments: التعليقات
+edit: تعديل
+cancel: إلغاء
+typeCommentHint: اكتب تعليق ...
+editComment: تعديل تعليق
+typeMsgHint: اكتب رسالة ...
+typeRecipeNameHint: اكتب اسم وصفتك ...
+typeRecipeDescHint: اكتب وصف وصفتك ...
+explore: اكتشاف
+home: الصفحة الرئيسية
+send: إرسال
+ingredientName: اسم المكون
+add: إضافة
+typeStepHint: اكتب خطوة ...
+duration: المدة
+setDuration: تحديد المدة
+name: الاسم
+newPassHint: كلمة مرور جديدة
+cnfrmPassHint: تأكيد كلمة المرور
+passHave6Char: يجب أن تحتوي كلمة المرور الخاصة بك على 6 أحرف
+confirmYourPass: أكد كلمة المرور
+passChanged: تم تغيير كلمة المرور بنجاح
+language: اللغة
+en: الإنجليزية
+fr: الفرنسية
+ar: العربية
+k: ألف
+m: مليون
+b: مليار
+justNow: الآن
+seconds: ثانية
+minute: دقائق
+minutes: دقيقة
+hour: ساعات
+hours: ساعة
+day: أيام
+days: يوم
+week: أسابيع
+weeks: أسبوع
+month: أشهر
+months: شهر
+year: سنوات
+years: سنة
+g: غ
+kg: كغ
+cl: سل
+l: ل
+bigSpoon: ملعقة كبيرة
+smallSpoon: ملعقة صغيرة
+unit: وحدة
+you: أنت
+sendUser: أرسل مستخدم
+sendImage: أرسل صورة
+sendRecipe: أرسل وصفة
+following: يتابع
+followers: المتابعون
+post: المنشورات
+min: دقيقة
+followHome: تابع الأشخاص لرؤية وصفاتهم في صفحتك الرئيسية
+login: تسجيل الدخول
+signup: إنشاء حساب
+dkMode: الوضع الداكن
+ltMode: الوضع النهاري
+lgWelcome: مرحبا
+lgBack: بعودتك
+sgCreate: إنشاء
+sgAccount: حساب
+loading: انتظر لحظة ...
+category: الفئة
+setCat: حدد الفئة
+breakfast: وجبة افطار
+lunch: غداء
+dinner: وجبة عشاء
+beef: لحم بقري
+goat: ماعز
+chicken: دجاج
+dessert: الحلوى
+pasta: معكرونة
+seafood: مأكولات بحرية
+vegetarian: نباتي
+drinks: مشروبات
+area: المنطقة
+setArea: حدد المنطقة
+american: امريكا
+british: بريطانيا
+canadian: كندا
+chinese: الصين
+dutch: هولندا
+egyptian: مصر
+french: فرنسا
+greek: اليونان
+indian: الهند
+irish: ايرلندا
+italian: ايطاليا
+jamaican: جامايكا
+japanese: اليابان
+kenyan: كينيا
+malaysian: ماليزيا
+mexican: المكسيك
+moroccan: المغرب
+russian: روسيا
+spanish: اسبانيا
+thai: تايلاند
+tunisian: تونس
+turkish: تركيا
+vietnamese: فيتنام
+noUserfoundName: لم يتم العثور على مستخدم بهذا الاسم

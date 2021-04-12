@@ -1,3 +1,5 @@
+import 'package:qr_scanner/Utils/time_formatter.dart';
+
 import '../db/database_provider.dart';
 
 class QR {
@@ -5,11 +7,13 @@ class QR {
   String value;
   int? type;
   bool isScanned;
+  int? time;
 
   QR.init({
     this.id,
     required this.value,
     this.type,
+    this.time,
     required this.isScanned,
   });
 
@@ -32,6 +36,7 @@ class QR {
       DatabaseProvider.COLUMN_VALUE: value,
       DatabaseProvider.COLUMN_TYPE: type,
       DatabaseProvider.COLUMN_IS_SCANNED: isScanned ? 1 : 0,
+      DatabaseProvider.COLUMN_DATE: DateTime.now().millisecondsSinceEpoch,
     };
     if (id != null) {
       map[DatabaseProvider.COLUMN_ID] = id;
@@ -45,12 +50,13 @@ class QR {
       value: map[DatabaseProvider.COLUMN_VALUE],
       type: map[DatabaseProvider.COLUMN_TYPE],
       isScanned: map[DatabaseProvider.COLUMN_IS_SCANNED] == 1,
+      time: map[DatabaseProvider.COLUMN_DATE],
     );
   }
 
   @override
   String toString() {
-    return 'QR(id: $id, value: $value, type: $type, isScanned: $isScanned)';
+    return 'QR(id: $id, value: $value, type: $type, isScanned: $isScanned, time: $time)';
   }
 
   int _setType() {
@@ -96,5 +102,9 @@ class QR {
       default:
         return '';
     }
+  }
+
+  String getTime() {
+    return formatTime(time!);
   }
 }

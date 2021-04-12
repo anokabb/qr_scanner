@@ -209,6 +209,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       _qrList[pos].typeToString(),
                       style: TextStyle(color: Colors.grey),
                     ),
+                    trailing: Text(
+                      _qrList[pos].getTime(),
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
                 ),
               ],
