@@ -25,10 +25,10 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _buildScreens() {
     return [
-      CreateScreen(),
-      SettingsScreen(),
       ScannerScreen(),
       HistoryScreen(),
+      CreateScreen(),
+      SettingsScreen(),
     ];
   }
 

@@ -11,6 +11,7 @@ import '../models/QR.dart';
 import '../components/CustomAppBar.dart';
 import '../cubit/history_cubit.dart';
 import 'ResultScreen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HistoryScreen extends StatefulWidget {
   HistoryScreen();
@@ -130,12 +131,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('images/noData.png'),
+          SvgPicture.asset(
+            'images/noData.svg',
+            width: MediaQuery.of(context).size.width / 2,
+          ),
+          SizedBox(height: 10),
           Text(
             'No Data',
-            style: TextStyle(
-                color: Theme.of(context).primaryColor.withOpacity(0.7),
-                fontSize: 30),
+            style: TextStyle(color: Colors.grey.withOpacity(0.6), fontSize: 30),
           )
         ],
       );
