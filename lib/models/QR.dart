@@ -104,7 +104,7 @@ class QR {
     }
   }
 
-  String getTime() {
-    return formatTime(time!);
+  getTime() {
+    // return formatTime(time!);
   }
 }

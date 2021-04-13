@@ -2,15 +2,10 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qr_scanner/Utils/Translate.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
+import 'package:qr_scanner/components/CustomAppBar.dart';
+import 'package:qr_scanner/cubit/locale_cubit.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
-import '../db/database_provider.dart';
-import '../models/QR.dart';
-import '../components/CustomAppBar.dart';
-import '../components/txtField.dart';
-import 'ResultScreen.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen();
@@ -64,14 +59,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SettingItem(
-              title: translate('language'),
+              title: translate(context, 'language'),
               onTap: () {
                 // BlocProvider.of<ThemeCubit>(context).changeTheme();
               },
-              child: DropM(
+              child: DropdownButton(
+                value: 0,
                 items: [
-                  DropdownMenuItem(child: Text('1')),
+                  DropdownMenuItem(
+                    child: Text(
+                      'en',
+                      style: TextStyle(color: Theme.of(context).splashColor),
+                    ),
+                    value: 0,
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      'ar',
+                      style: TextStyle(color: Theme.of(context).splashColor),
+                    ),
+                    value: 1,
+                  ),
                 ],
+                dropdownColor: Theme.of(context).canvasColor,
+                onChanged: (index) {
+                  print(index);
+                  if (AppLocalizations.of(context).isEnLocale) {
+                    BlocProvider.of<LocaleCubit>(context).toArabic();
+                  } else {
+                    BlocProvider.of<LocaleCubit>(context).toEnglish();
+                  }
+                },
               ),
             ),
             SettingItem(
