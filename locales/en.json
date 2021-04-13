@@ -23,5 +23,19 @@
     "copied_clipboard": "Copied to clipboard",
     "english": "English",
     "french": "French",
-    "arabic": "Arabic"
+    "arabic": "Arabic",
+    "justNow": "Just now",
+    "seconds": "seconds",
+    "minute": "minute",
+    "minutes": "minutes",
+    "hour": "hour",
+    "hours": "hours",
+    "day": "day",
+    "days": "days",
+    "week": "week",
+    "weeks": "weeks",
+    "month": "month",
+    "months": "months",
+    "year": "year",
+    "years": "years"
 }

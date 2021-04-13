@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:qr_scanner/Utils/time_formatter.dart';
-
+import 'package:qr_scanner/Utils/TimeFormat.dart';
 import '../db/database_provider.dart';
 
 class QR {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qr_scanner/models/Languages.dart';
 import 'dart:convert' show json;
 import 'app_localizations_delegate.dart';
 
@@ -26,11 +25,11 @@ class AppLocalizations {
     });
   }
 
-  String translate(String key) => _localizedStrings![key]!;
+  String? translate(String key) => _localizedStrings![key];
 
   // bool get isEnLocale => locale.languageCode == Languages.ENGLISH_STR;
 }
 
 String translate(BuildContext context, String key) {
-  return AppLocalizations.of(context).translate(key);
+  return AppLocalizations.of(context).translate(key) ?? key;
 }

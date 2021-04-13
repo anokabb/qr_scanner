@@ -7,6 +7,7 @@ import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:qr_scanner/components/QrIconType.dart';
 import 'package:qr_scanner/cubit/locale_cubit.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
+import 'package:qr_scanner/models/Languages.dart';
 import '../bloc/qr_bloc.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -174,7 +175,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
             background: Container(
               color: Colors.red,
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment:
+                    BlocProvider.of<LocaleCubit>(context).state.langCode ==
+                            Languages.ARABIC_STR
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Icon(
