@@ -1,5 +1,4 @@
 class Languages {
-  // static String? Current_LANG;
   static const int ENGLISH_id = 0;
   static const int FRENCH_id = 1;
   static const int ARABIC_id = 2;

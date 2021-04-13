@@ -1,3 +1,27 @@
 {
-    "language": "Langue"
+    "language": "Langue",
+    "scan": "Analyse",
+    "history": "Histoire",
+    "create": "Créer",
+    "settings": "Paramètres",
+    "create_qr": "Créer QR",
+    "type_text": "Saisir du texte ...",
+    "scanned": "Scanné",
+    "created": "Créé",
+    "no_data": "Pas de données",
+    "no_qr": "Aucun code Qr trouvé",
+    "theme": "Thème",
+    "dark": "Mode Sombre",
+    "light": "Mode Lumière",
+    "rate_app": "Évaluer l'application",
+    "more_apps": "Plus d'applications",
+    "share_app": "Partager l'application",
+    "copy": "Copie",
+    "search": "Rechercher",
+    "share": "Partager",
+    "save": "Sauvegarder",
+    "copied_clipboard": "Copié dans le presse-papier",
+    "english": "Anglais",
+    "french": "Français",
+    "arabic": "Arabe"
 }

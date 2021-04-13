@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:qr_scanner/models/Languages.dart';
 import 'app_localizations.dart';
 
 class AppLocalizationsSetup {
   static const Iterable<Locale> supportedLocales = [
-    Locale('en'),
-    Locale('ar'),
+    Locale(Languages.ENGLISH_STR),
+    Locale(Languages.ARABIC_STR),
+    Locale(Languages.FRENCH_STR),
   ];
 
   static const Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates =

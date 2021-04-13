@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_scanner/models/Languages.dart';
 import 'dart:convert' show json;
 import 'app_localizations_delegate.dart';
 
@@ -27,7 +28,7 @@ class AppLocalizations {
 
   String translate(String key) => _localizedStrings![key]!;
 
-  bool get isEnLocale => locale.languageCode == 'en';
+  // bool get isEnLocale => locale.languageCode == Languages.ENGLISH_STR;
 }
 
 String translate(BuildContext context, String key) {

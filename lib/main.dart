@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                     AppLocalizationsSetup.localizationsDelegates,
                 localeResolutionCallback:
                     AppLocalizationsSetup.localeResolutionCallback,
-                locale: Locale(localeState.localeCode),
+                locale: Locale(localeState.langCode),
               );
             },
           );

@@ -6,6 +6,7 @@ import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:qr_scanner/components/CustomAppBar.dart';
 import 'package:qr_scanner/cubit/locale_cubit.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
+import 'package:qr_scanner/models/Languages.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen();
@@ -60,36 +61,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SettingItem(
               title: translate(context, 'language'),
-              onTap: () {
-                // BlocProvider.of<ThemeCubit>(context).changeTheme();
-              },
+              onTap: () {},
               child: DropdownButton(
-                value: 0,
+                underline: Container(),
                 items: [
                   DropdownMenuItem(
                     child: Text(
-                      'en',
+                      translate(context, 'english'),
                       style: TextStyle(color: Theme.of(context).splashColor),
                     ),
-                    value: 0,
+                    value: Languages.ENGLISH_id,
                   ),
                   DropdownMenuItem(
                     child: Text(
-                      'ar',
+                      translate(context, 'french'),
                       style: TextStyle(color: Theme.of(context).splashColor),
                     ),
-                    value: 1,
+                    value: Languages.FRENCH_id,
+                  ),
+                  DropdownMenuItem(
+                    child: Text(
+                      translate(context, 'arabic'),
+                      style: TextStyle(color: Theme.of(context).splashColor),
+                    ),
+                    value: Languages.ARABIC_id,
                   ),
                 ],
-                dropdownColor: Theme.of(context).canvasColor,
                 onChanged: (index) {
-                  print(index);
-                  if (AppLocalizations.of(context).isEnLocale) {
-                    BlocProvider.of<LocaleCubit>(context).toArabic();
-                  } else {
+                  if (index == Languages.ENGLISH_id) {
                     BlocProvider.of<LocaleCubit>(context).toEnglish();
+                  } else if (index == Languages.FRENCH_id) {
+                    BlocProvider.of<LocaleCubit>(context).toFrench();
+                  } else if (index == Languages.ARABIC_id) {
+                    BlocProvider.of<LocaleCubit>(context).toArabic();
                   }
                 },
+                value: BlocProvider.of<LocaleCubit>(context).state.langId,
+                dropdownColor: Theme.of(context).canvasColor,
               ),
             ),
             SettingItem(
