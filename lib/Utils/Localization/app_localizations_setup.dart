@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:qr_scanner/models/Languages.dart';
+import '../../models/Languages.dart';
 import 'app_localizations.dart';
 
 class AppLocalizationsSetup {

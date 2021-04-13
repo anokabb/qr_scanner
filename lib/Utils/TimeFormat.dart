@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:qr_scanner/models/Languages.dart';
+import '../models/Languages.dart';
 
 import 'Localization/app_localizations.dart';
 

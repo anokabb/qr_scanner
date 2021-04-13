@@ -1,12 +1,16 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
-import 'package:qr_scanner/components/CustomAppBar.dart';
-import 'package:qr_scanner/cubit/locale_cubit.dart';
-import 'package:qr_scanner/cubit/theme_cubit.dart';
-import 'package:qr_scanner/models/Languages.dart';
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../Utils/Localization/app_localizations.dart';
+import '../components/CustomAppBar.dart';
+import '../cubit/locale_cubit.dart';
+import '../cubit/theme_cubit.dart';
+import '../models/Languages.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen();
@@ -102,7 +106,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SettingItem(
               title: translate(context, 'rate_app'),
-              onTap: () {},
+              onTap: () async {
+                InAppReview.instance.openStoreListing();
+              },
               child: Row(
                 children: List.generate(
                   5,
@@ -116,7 +122,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SettingItem(
               title: translate(context, 'more_apps'),
-              onTap: () {},
+              onTap: () {
+                try {
+                  launch("market://details?id=AK.Dev");
+                } on PlatformException catch (_) {
+                  launch(
+                      "https://play.google.com/store/apps/details?id=AK.Dev");
+                } finally {
+                  launch(
+                      "https://play.google.com/store/apps/details?id=AK.Dev");
+                }
+              },
               child: Icon(
                 Icons.apps_rounded,
                 color: Theme.of(context).primaryColor,
@@ -125,7 +141,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SettingItem(
               title: translate(context, 'share_app'),
-              onTap: () {},
+              onTap: () {
+                Share.share('https://play.google.com/store/apps/details?id=' +
+                    "com.akdev.workoutplanner");
+              },
               child: Icon(
                 Icons.share_rounded,
                 color: Theme.of(context).primaryColor,
@@ -158,7 +177,7 @@ class SettingItem extends StatelessWidget {
         borderRadius: 16,
         spread: BlocProvider.of<ThemeCubit>(context).state.isDark ? 0 : 10,
         depth: 10,
-        child: GestureDetector(
+        child: InkWell(
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(16.0),

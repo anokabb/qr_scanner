@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:qr_scanner/Utils/Localization/app_localizations_setup.dart';
-import 'package:qr_scanner/cubit/locale_cubit.dart';
-import 'package:qr_scanner/cubit/theme_cubit.dart';
-import 'package:qr_scanner/models/Themes.dart';
+import 'Utils/Localization/app_localizations_setup.dart';
+import 'cubit/locale_cubit.dart';
+import 'cubit/theme_cubit.dart';
+import 'models/Themes.dart';
 import 'screens/MainScreen.dart';
 
 void main() async {

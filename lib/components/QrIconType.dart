@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_scanner/models/QR.dart';
+import '../models/QR.dart';
 
 IconData? getIconType(int QrType) {
   switch (QrType) {

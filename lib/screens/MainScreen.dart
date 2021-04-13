@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
+import '../Utils/Localization/app_localizations.dart';
 import '../bloc/qr_bloc.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';

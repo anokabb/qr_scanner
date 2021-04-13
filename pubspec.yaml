@@ -11,10 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   flutter_localizations:
     sdk: flutter
-
   clay_containers: ^0.3.2
   cupertino_icons: ^1.0.2
   flutter_bloc: ^7.0.0
@@ -25,6 +23,7 @@ dependencies:
   fluttertoast: ^8.0.3
   hydrated_bloc: ^7.0.0
   image_picker: ^0.7.4
+  in_app_review: ^2.0.1
   path_provider: ^2.0.1
   persistent_bottom_nav_bar: ^4.0.2
   qr_code_scanner: ^0.4.0

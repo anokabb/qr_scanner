@@ -1,7 +1,7 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_scanner/cubit/theme_cubit.dart';
+import '../cubit/theme_cubit.dart';
 
 class TxtField extends StatelessWidget {
   BuildContext context;

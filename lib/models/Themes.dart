@@ -8,6 +8,7 @@ class AppThemes {
     splashColor: Colors.black,
     buttonColor: Colors.white,
     canvasColor: Color(0xFFF2F2F2),
+    highlightColor: Colors.grey.withOpacity(0.5),
   );
 
   static final ThemeData darkThemeData = ThemeData(
@@ -17,5 +18,6 @@ class AppThemes {
     splashColor: Colors.white,
     buttonColor: Color.fromRGBO(44, 44, 44, 1),
     canvasColor: Color.fromRGBO(44, 44, 44, 1),
+    highlightColor: Colors.grey.withOpacity(0.5),
   );
 }

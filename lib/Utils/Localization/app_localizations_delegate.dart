@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' show Locale, LocalizationsDelegate;
-import 'package:qr_scanner/models/Languages.dart';
+import '../../models/Languages.dart';
 import 'app_localizations.dart';
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
