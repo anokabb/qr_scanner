@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:qr_scanner/components/QrIconType.dart';
+import 'package:qr_scanner/cubit/locale_cubit.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
 import '../bloc/qr_bloc.dart';
 import '../db/database_provider.dart';
@@ -41,8 +42,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
             translate(context, 'history'),
           ),
         ),
-        body:
-            BlocBuilder<HistoryCubit, HistoryState>(builder: (context, state) {
+        body: BlocBuilder<HistoryCubit, HistoryState>(
+            builder: (context, historyState) {
           return Column(
             children: <Widget>[
               Padding(
@@ -67,7 +68,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Theme.of(context).primaryColor.withOpacity(
-                                  state is HistoryScanned ? 1 : 0.5),
+                                  historyState is HistoryScanned ? 1 : 0.5),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50)),
                             ),
@@ -90,7 +91,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Theme.of(context).primaryColor.withOpacity(
-                                  state is HistoryScanned ? 0.5 : 1),
+                                  historyState is HistoryScanned ? 0.5 : 1),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50)),
                             ),
@@ -114,11 +115,16 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 child: BlocConsumer<QrBloc, List<QR>>(
                   builder: (context, Qrs) {
                     return RefreshIndicator(
-                        color: Theme.of(context).primaryColor,
-                        onRefresh: () {
-                          return DatabaseProvider.db.getQrs(context);
-                        },
-                        child: _getHistoryList(state, Qrs));
+                      color: Theme.of(context).primaryColor,
+                      onRefresh: () {
+                        return DatabaseProvider.db.getQrs(context);
+                      },
+                      child: _getHistoryList(
+                        historyState,
+                        BlocProvider.of<LocaleCubit>(context).state.langCode,
+                        Qrs,
+                      ),
+                    );
                   },
                   listener: (_, __) {},
                 ),
@@ -130,8 +136,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
-  Widget _getHistoryList(HistoryState state, List<QR> Qrs) {
-    List<QR> _qrList = Qrs.where((qr) => !(state is HistoryScanned)).toList();
+  Widget _getHistoryList(
+      HistoryState historyState, String langCode, List<QR> Qrs) {
+    List<QR> _qrList =
+        Qrs.where((qr) => !(historyState is HistoryScanned)).toList();
 
     if (_qrList.isEmpty) {
       return Column(
@@ -216,7 +224,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     trailing: Text(
-                      _qrList[pos].getTime(),
+                      _qrList[pos].getTime(context, langCode),
                       style: TextStyle(color: Colors.grey),
                     ),
                   ),

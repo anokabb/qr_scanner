@@ -69,7 +69,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 16),
                       child: TxtField(
                         context,
                         controler: _controller,

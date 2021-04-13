@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:qr_scanner/Utils/time_formatter.dart';
 
 import '../db/database_provider.dart';
@@ -104,7 +105,8 @@ class QR {
     }
   }
 
-  getTime() {
-    // return formatTime(time!);
+  String getTime(BuildContext context, String langCode) {
+    return TimeFormat(timestamp: time!, langCode: langCode, context: context)
+        .formatTime();
   }
 }
