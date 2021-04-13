@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import '../bloc/qr_bloc.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';
@@ -37,22 +38,22 @@ class _MainScreenState extends State<MainScreen> {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.qr_code_scanner_rounded),
         activeColorPrimary: Theme.of(context).primaryColor,
-        title: ("Scan"),
+        title: (translate(context, 'scan')),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.history),
         activeColorPrimary: Theme.of(context).primaryColor,
-        title: ("History"),
+        title: (translate(context, 'history')),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.create_outlined),
         activeColorPrimary: Theme.of(context).primaryColor,
-        title: ("Create"),
+        title: (translate(context, 'create')),
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.settings_rounded),
         activeColorPrimary: Theme.of(context).primaryColor,
-        title: ("Settings"),
+        title: (translate(context, 'settings')),
       ),
     ];
   }

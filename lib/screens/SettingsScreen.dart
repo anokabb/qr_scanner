@@ -23,7 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(
-          'Settings',
+          translate(context, 'settings'),
         ),
       ),
       body: SingleChildScrollView(
@@ -31,7 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SettingItem(
-              title: 'Theme',
+              title: translate(context, 'theme'),
               onTap: () {
                 BlocProvider.of<ThemeCubit>(context).changeTheme();
               },
@@ -39,8 +39,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text(
                     BlocProvider.of<ThemeCubit>(context).state.isDark
-                        ? 'Dark'
-                        : 'Light',
+                        ? translate(context, 'dark')
+                        : translate(context, 'light'),
                     style: TextStyle(
                       fontSize: 18,
                       color: Theme.of(context).primaryColor,
@@ -93,7 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SettingItem(
-              title: 'Rate App',
+              title: translate(context, 'rate_app'),
               onTap: () {},
               child: Row(
                 children: List.generate(
@@ -107,7 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SettingItem(
-              title: 'More Apps',
+              title: translate(context, 'more_apps'),
               onTap: () {},
               child: Icon(
                 Icons.apps_rounded,
@@ -116,7 +116,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SettingItem(
-              title: 'Share App',
+              title: translate(context, 'share_app'),
               onTap: () {},
               child: Icon(
                 Icons.share_rounded,

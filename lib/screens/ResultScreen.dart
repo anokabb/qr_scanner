@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:qr_scanner/components/QrIconType.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
 import 'package:share/share.dart';
@@ -46,7 +47,7 @@ class _ResultScreenState extends State<ResultScreen> {
               color: Colors.white,
             )),
         title: Text(
-          'Result',
+          'QR',
         ),
       ),
       body: SingleChildScrollView(
@@ -105,22 +106,23 @@ class _ResultScreenState extends State<ResultScreen> {
               children: <Widget>[
                 CuperIcon(
                   icon: Icons.share_rounded,
-                  text: 'Share',
+                  text: translate(context, 'share'),
                   onPressed: () {
                     Share.share(widget.Qr.value);
                   },
                 ),
                 CuperIcon(
                   icon: Icons.copy_rounded,
-                  text: 'Copy',
+                  text: translate(context, 'copy'),
                   onPressed: () {
                     Clipboard.setData(new ClipboardData(text: widget.Qr.value));
-                    Fluttertoast.showToast(msg: 'Copied to clipboard');
+                    Fluttertoast.showToast(
+                        msg: translate(context, 'copied_clipboard'));
                   },
                 ),
                 CuperIcon(
                   icon: Icons.web,
-                  text: 'Search',
+                  text: translate(context, 'search'),
                   onPressed: () async {
                     await FlutterWebBrowser.openWebPage(
                         url: "https://www.google.com/search?q=" +
@@ -164,7 +166,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   children: <Widget>[
                     CuperIcon(
                         icon: Icons.share_rounded,
-                        text: 'Share',
+                        text: translate(context, 'share'),
                         onPressed: () {
                           screenshotController
                               .capture()
@@ -180,7 +182,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         }),
                     CuperIcon(
                         icon: Icons.save_alt_rounded,
-                        text: 'Save',
+                        text: translate(context, 'save'),
                         onPressed: () {
                           screenshotController
                               .capture()

@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
 import '../cubit/flash_cubit.dart';
@@ -128,7 +129,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     print('qrData : $qrData');
     if (qrData.isEmpty) {
       Fluttertoast.showToast(
-        msg: 'No Qr code found',
+        msg: translate(context, 'no_qr'),
       );
     } else {
       QR Qr = QR(value: qrData, isScanned: true);

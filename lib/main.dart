@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
                 previousState != currentState,
             builder: (_, localeState) {
               return MaterialApp(
-                title: 'QR Scanner',
                 debugShowCheckedModeBanner: false,
                 theme: AppThemes.lightThemeData,
                 darkTheme: AppThemes.darkThemeData,

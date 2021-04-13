@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -31,7 +32,7 @@ class _CreateScreenState extends State<CreateScreen> {
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(
-          'Create QR',
+          translate(context, 'create_qr'),
         ),
       ),
       body: GestureDetector(
@@ -73,7 +74,7 @@ class _CreateScreenState extends State<CreateScreen> {
                         context,
                         controler: _controller,
                         focusNode: focusNode,
-                        hint: 'Type Text ...',
+                        hint: translate(context, 'type_text'),
                         autofocus: false,
                         lines: 3,
                         onChanged: (s) => text.value = s,

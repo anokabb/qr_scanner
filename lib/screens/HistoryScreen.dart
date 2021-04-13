@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:qr_scanner/components/QrIconType.dart';
 import 'package:qr_scanner/cubit/theme_cubit.dart';
 import '../bloc/qr_bloc.dart';
@@ -37,7 +38,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           centerTitle: true,
           shape: CustomAppBar(),
           title: Text(
-            'History',
+            translate(context, 'history'),
           ),
         ),
         body:
@@ -74,7 +75,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 20),
                               child: Text(
-                                'Scanned',
+                                translate(context, 'scanned'),
                                 style: TextStyle(
                                     fontSize: 22, color: Colors.white),
                               ),
@@ -97,7 +98,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 20),
                               child: Text(
-                                'Created',
+                                translate(context, 'created'),
                                 style: TextStyle(
                                     fontSize: 22, color: Colors.white),
                               ),
@@ -142,7 +143,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           ),
           SizedBox(height: 10),
           Text(
-            'No Data',
+            translate(context, 'no_data'),
             style: TextStyle(color: Colors.grey.withOpacity(0.6), fontSize: 30),
           )
         ],
