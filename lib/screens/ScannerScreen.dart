@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_qr_reader/flutter_qr_reader.dart';
+// import 'package:flutter_qr_reader/flutter_qr_reader.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -125,7 +125,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
   Future pickImage() async {
     final PickedFile? pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
-    String qrData = await FlutterQrReader.imgScan(pickedFile!.path);
+    String qrData = '';
+    // await FlutterQrReader.imgScan(pickedFile!.path);
     print('qrData : $qrData');
     if (qrData.isEmpty) {
       Fluttertoast.showToast(

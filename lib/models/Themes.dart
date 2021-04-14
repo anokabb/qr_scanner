@@ -12,7 +12,7 @@ class AppThemes {
   );
 
   static final ThemeData darkThemeData = ThemeData(
-    primaryColor: Color.fromRGBO(98, 0, 238, 1),
+    primaryColor: Color.fromRGBO(255, 2, 102, 1),
     appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(44, 44, 44, 1)),
     backgroundColor: Colors.black,
     splashColor: Colors.white,
