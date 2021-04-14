@@ -151,6 +151,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 size: 30,
               ),
             ),
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
@@ -184,12 +187,16 @@ class SettingItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Theme.of(context).splashColor,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Theme.of(context).splashColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 child

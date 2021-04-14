@@ -135,12 +135,8 @@ class _ResultScreenState extends State<ResultScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
             SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
-                Container(
-                  width: 46,
-                ),
                 ClayContainer(
                   color: BlocProvider.of<ThemeCubit>(context).state.isDark
                       ? Colors.white
@@ -151,18 +147,19 @@ class _ResultScreenState extends State<ResultScreen> {
                       : 10,
                   depth: 10,
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Screenshot(
                       controller: screenshotController,
                       child: QrImage(
                         data: widget.Qr.value,
                         version: QrVersions.auto,
-                        size: 200,
+                        size: MediaQuery.of(context).size.width * 0.5,
                       ),
                     ),
                   ),
                 ),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CuperIcon(
                         icon: Icons.share_rounded,
@@ -199,10 +196,10 @@ class _ResultScreenState extends State<ResultScreen> {
                           });
                         }),
                   ],
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 ),
               ],
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),

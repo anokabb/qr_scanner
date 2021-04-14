@@ -139,8 +139,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   Widget _getHistoryList(
       HistoryState historyState, String langCode, List<QR> Qrs) {
-    List<QR> _qrList =
-        Qrs.where((qr) => !(historyState is HistoryScanned)).toList();
+    if (historyState is HistoryScanned) {}
+    List<QR> _qrList = (historyState is HistoryScanned)
+        ? Qrs.where((qr) => qr.isScanned == true).toList()
+        : Qrs.where((qr) => qr.isScanned == false).toList();
 
     if (_qrList.isEmpty) {
       return Column(
