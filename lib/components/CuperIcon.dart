@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class CuperIcon extends StatelessWidget {
   final Function() onPressed;
   final IconData icon;
+  final bool isBrowser;
   final String? text;
   const CuperIcon({
     required this.onPressed,
     required this.icon,
     this.text,
+    this.isBrowser = false,
   });
 
   @override
@@ -17,11 +19,17 @@ class CuperIcon extends StatelessWidget {
       onPressed: onPressed,
       child: Column(
         children: [
-          Icon(
-            icon,
-            size: 30,
-            color: Theme.of(context).primaryColor,
-          ),
+          isBrowser
+              ? Image.asset(
+                  'images/browser.png',
+                  width: 30,
+                  color: Theme.of(context).primaryColor,
+                )
+              : Icon(
+                  icon,
+                  size: 30,
+                  color: Theme.of(context).primaryColor,
+                ),
           text == null
               ? Container()
               : Padding(

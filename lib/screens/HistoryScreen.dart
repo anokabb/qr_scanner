@@ -163,7 +163,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return ListView.builder(
       itemCount: _qrList.length,
       itemBuilder: (_, pos) {
-        return InkWell(
+        return GestureDetector(
           onTap: () {
             pushNewScreen(
               context,

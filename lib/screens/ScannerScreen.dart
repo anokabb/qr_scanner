@@ -63,7 +63,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                     children: <Widget>[
                       CupertinoButton(
                         padding: EdgeInsets.zero,
-                        onPressed: pickImage,
+                        onPressed: () {},
                         child: Icon(
                           Icons.image_rounded,
                           color: Theme.of(context).primaryColor,

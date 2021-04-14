@@ -122,6 +122,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
                 CuperIcon(
                   icon: Icons.web,
+                  isBrowser: true,
                   text: translate(context, 'search'),
                   onPressed: () async {
                     await FlutterWebBrowser.openWebPage(
