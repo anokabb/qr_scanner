@@ -1,21 +1,41 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../bloc/qr_bloc.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';
 import 'ScannerScreen.dart';
 import 'SettingsScreen.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen();
+  static showInterstitial() {
+    // _MainScreenState.showInterstitial();
+  }
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+  //*                                   Ads                                    */
+
+  static final rewardedInterstitial =
+      RewardedInterstitialAd(unitId: RewardedInterstitialAd.testUnitId)..load();
+
+  static showInterstitial() async {
+    if (!rewardedInterstitial.isAvailable) await rewardedInterstitial.load();
+    if (rewardedInterstitial.isAvailable) {
+      await rewardedInterstitial.show();
+      rewardedInterstitial.load(force: true);
+    }
+  }
+
+  //*                                   Ads                                    */
+
   late PersistentTabController _controller;
 
   @override
@@ -70,7 +90,6 @@ class _MainScreenState extends State<MainScreen> {
           items: _navBarsItems(),
           confineInSafeArea: true,
           backgroundColor: Theme.of(context).backgroundColor,
-
           handleAndroidBackButtonPress: true, // Default is true.
           resizeToAvoidBottomInset:
               true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -96,6 +115,24 @@ class _MainScreenState extends State<MainScreen> {
           ),
           navBarStyle: NavBarStyle
               .style1, // Choose the nav bar style with this property.
+        ),
+        bottomNavigationBar: BlocProvider(
+          create: (context) => InternetCubit(connectivity: Connectivity()),
+          child: BlocBuilder<InternetCubit, InternetState>(
+            builder: (context, state) {
+              if (state is InternetConnected) {
+                return Container(
+                  color: Theme.of(context).backgroundColor,
+                  child: BannerAd(
+                    unitId: BannerAdController.testUnitId,
+                    size: BannerSize.ADAPTIVE,
+                  ),
+                );
+              } else {
+                return Container(height: 0);
+              }
+            },
+          ),
         ),
       ),
     );

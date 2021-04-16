@@ -2,6 +2,7 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -10,6 +11,7 @@ import '../db/database_provider.dart';
 import '../models/QR.dart';
 import '../components/CustomAppBar.dart';
 import '../components/txtField.dart';
+import 'MainScreen.dart';
 import 'ResultScreen.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -105,7 +107,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
       QR Qr = QR(value: _controller.text, isScanned: false);
       DatabaseProvider.db.insert(context, Qr);
-
+      MainScreen.showInterstitial();
       pushNewScreen(
         context,
         screen: ResultScreen(Qr),

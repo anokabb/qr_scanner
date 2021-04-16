@@ -8,9 +8,11 @@ import 'cubit/locale_cubit.dart';
 import 'cubit/theme_cubit.dart';
 import 'models/Themes.dart';
 import 'screens/MainScreen.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
   runApp(MyApp());

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1030381126884",
+    "project_id": "qr-code-scanner-eb666",
+    "storage_bucket": "qr-code-scanner-eb666.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030381126884:android:f05e46a2f72f4aa28b58f1",
+        "android_client_info": {
+          "package_name": "com.akdev.qrscanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030381126884-u3u0af3bg05q791pb3ftu5j76t47thjn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akdev.qrscanner",
+            "certificate_hash": "32a59e5505eb03a983a434b66f04f978100a8adf"
+          }
+        },
+        {
+          "client_id": "1030381126884-5b567v0dr7928ni6um5u2loqjtafvip1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmDDPEGGUQBfJorcajXBbaFWAo62wUrlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030381126884-5b567v0dr7928ni6um5u2loqjtafvip1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

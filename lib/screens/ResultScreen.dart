@@ -8,6 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
@@ -203,6 +204,10 @@ class _ResultScreenState extends State<ResultScreen> {
             SizedBox(height: 20),
           ],
         ),
+      ),
+      bottomNavigationBar: BannerAd(
+        unitId: BannerAdController.testUnitId,
+        size: BannerSize.ADAPTIVE,
       ),
     );
   }
