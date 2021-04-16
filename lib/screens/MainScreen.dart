@@ -13,7 +13,7 @@ import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 class MainScreen extends StatefulWidget {
   static showInterstitial() {
-    // _MainScreenState.showInterstitial();
+    _MainScreenState.showInterstitial();
   }
 
   @override
@@ -24,7 +24,8 @@ class _MainScreenState extends State<MainScreen> {
   //*                                   Ads                                    */
 
   static final rewardedInterstitial =
-      RewardedInterstitialAd(unitId: RewardedInterstitialAd.testUnitId)..load();
+      RewardedInterstitialAd(unitId: 'ca-app-pub-9745500678773453/5870992710')
+        ..load();
 
   static showInterstitial() async {
     if (!rewardedInterstitial.isAvailable) await rewardedInterstitial.load();
@@ -124,7 +125,8 @@ class _MainScreenState extends State<MainScreen> {
                 return Container(
                   color: Theme.of(context).backgroundColor,
                   child: BannerAd(
-                    unitId: BannerAdController.testUnitId,
+                    unitId: 'ca-app-pub-9745500678773453/3503849670',
+                    // unitId: BannerAdController.testUnitId,
                     size: BannerSize.ADAPTIVE,
                   ),
                 );

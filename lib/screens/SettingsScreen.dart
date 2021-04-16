@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_scanner/screens/MainScreen.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -39,6 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: translate(context, 'theme'),
               onTap: () {
                 BlocProvider.of<ThemeCubit>(context).changeTheme();
+                MainScreen.showInterstitial();
               },
               child: Row(
                 children: [
@@ -99,6 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   } else if (index == Languages.ARABIC_id) {
                     BlocProvider.of<LocaleCubit>(context).toArabic();
                   }
+                  MainScreen.showInterstitial();
                 },
                 value: BlocProvider.of<LocaleCubit>(context).state.langId,
                 dropdownColor: Theme.of(context).canvasColor,

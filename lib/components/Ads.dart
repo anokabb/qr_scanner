@@ -17,18 +17,12 @@ Widget separatorBuilder(
 NativeAd fullNativeAd({double padding = 16}) {
   return NativeAd(
     height: 300,
-    unitId: 'ca-app-pub-3940256099942544/2247696110',
+    unitId: 'ca-app-pub-9745500678773453/9054369886',
+    // unitId: NativeAdController.testUnitId,
     builder: (context, child) {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: padding),
-        child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(blurRadius: 20, color: Color.fromRGBO(35, 34, 56, 1))
-            ],
-          ),
-          child: child,
-        ),
+        child: child,
       );
     },
     buildLayout: fullBuilder,
@@ -73,19 +67,13 @@ NativeAd fullNativeAd({double padding = 16}) {
 
 NativeAd smallNativeAd({double padding = 16}) {
   return NativeAd(
-    unitId: 'ca-app-pub-3940256099942544/2247696110',
+    unitId: 'ca-app-pub-9745500678773453/9054369886',
+    // unitId: NativeAdController.testUnitId,
     height: 100,
     builder: (context, child) {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: padding),
-        child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(blurRadius: 20, color: Color.fromRGBO(35, 34, 56, 1))
-            ],
-          ),
-          child: child,
-        ),
+        child: child,
       );
     },
     buildLayout: secondBuilder,
