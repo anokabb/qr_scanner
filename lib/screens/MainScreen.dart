@@ -2,7 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:qr_scanner/cubit/internet_cubit.dart';
+import '../cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../bloc/qr_bloc.dart';
 import 'CreateScreen.dart';
@@ -24,7 +24,9 @@ class _MainScreenState extends State<MainScreen> {
   //*                                   Ads                                    */
 
   static final rewardedInterstitial =
-      RewardedInterstitialAd(unitId: 'ca-app-pub-9745500678773453/5870992710')
+      RewardedInterstitialAd(unitId: 'ca-app-pub-9745500678773453/5870992710'
+          // unitId: RewardedAd.testUnitId,
+          )
         ..load();
 
   static showInterstitial() async {

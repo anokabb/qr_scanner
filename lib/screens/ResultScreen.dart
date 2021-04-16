@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qr_scanner/components/Ads.dart';
-import 'package:qr_scanner/screens/MainScreen.dart';
+import '../components/Ads.dart';
+import 'MainScreen.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
 import '../cubit/theme_cubit.dart';
@@ -138,73 +137,78 @@ class _ResultScreenState extends State<ResultScreen> {
               ],
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             ),
-            SizedBox(height: 16),
-            fullNativeAd(),
-            Column(
-              children: [
-                ClayContainer(
-                  color: BlocProvider.of<ThemeCubit>(context).state.isDark
-                      ? Colors.white
-                      : Theme.of(context).canvasColor,
-                  borderRadius: 16,
-                  spread: BlocProvider.of<ThemeCubit>(context).state.isDark
-                      ? 0
-                      : 10,
-                  depth: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Screenshot(
-                      controller: screenshotController,
-                      child: QrImage(
-                        data: widget.Qr.value,
-                        version: QrVersions.auto,
-                        size: MediaQuery.of(context).size.width * 0.5,
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: fullNativeAd(context),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Column(
+                children: [
+                  ClayContainer(
+                    color: BlocProvider.of<ThemeCubit>(context).state.isDark
+                        ? Colors.white
+                        : Theme.of(context).canvasColor,
+                    borderRadius: 16,
+                    spread: BlocProvider.of<ThemeCubit>(context).state.isDark
+                        ? 0
+                        : 10,
+                    depth: 10,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Screenshot(
+                        controller: screenshotController,
+                        child: QrImage(
+                          data: widget.Qr.value,
+                          version: QrVersions.auto,
+                          size: MediaQuery.of(context).size.width * 0.5,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CuperIcon(
-                        icon: Icons.share_rounded,
-                        text: translate(context, 'share'),
-                        onPressed: () {
-                          screenshotController
-                              .capture()
-                              .then((Uint8List? image) async {
-                            Directory directory =
-                                await getApplicationDocumentsDirectory();
-                            File file = await File(directory.path + '/qr.png')
-                                .writeAsBytes(image!);
-                            Share.shareFiles([file.path]);
-                          }).catchError((onError) {
-                            print(onError);
-                          });
-                        }),
-                    CuperIcon(
-                        icon: Icons.save_alt_rounded,
-                        text: translate(context, 'save'),
-                        onPressed: () {
-                          screenshotController
-                              .capture()
-                              .then((Uint8List? image) async {
-                            final params = SaveFileDialogParams(
-                              data: image,
-                              fileName: '${DateTime.now().toString()}.png',
-                            );
-                            final filePath = await FlutterFileDialog.saveFile(
-                                params: params);
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CuperIcon(
+                          icon: Icons.share_rounded,
+                          text: translate(context, 'share'),
+                          onPressed: () {
+                            screenshotController
+                                .capture()
+                                .then((Uint8List? image) async {
+                              Directory directory =
+                                  await getApplicationDocumentsDirectory();
+                              File file = await File(directory.path + '/qr.png')
+                                  .writeAsBytes(image!);
+                              Share.shareFiles([file.path]);
+                            }).catchError((onError) {
+                              print(onError);
+                            });
+                          }),
+                      CuperIcon(
+                          icon: Icons.save_alt_rounded,
+                          text: translate(context, 'save'),
+                          onPressed: () {
+                            screenshotController
+                                .capture()
+                                .then((Uint8List? image) async {
+                              final params = SaveFileDialogParams(
+                                data: image,
+                                fileName: '${DateTime.now().toString()}.png',
+                              );
+                              final filePath = await FlutterFileDialog.saveFile(
+                                  params: params);
 
-                            MainScreen.showInterstitial();
-                            print(filePath);
-                          }).catchError((onError) {
-                            print(onError);
-                          });
-                        }),
-                  ],
-                ),
-              ],
+                              MainScreen.showInterstitial();
+                              print(filePath);
+                            }).catchError((onError) {
+                              print(onError);
+                            });
+                          }),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 20),
           ],

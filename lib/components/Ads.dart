@@ -5,16 +5,16 @@ Widget separatorBuilder(
   BuildContext context,
   int index,
 ) {
-  NativeAd _bigAd = fullNativeAd();
-  NativeAd _smallAd = smallNativeAd();
+  NativeAd _bigAd = fullNativeAd(context);
+  NativeAd _smallAd = smallNativeAd(context);
   return index == 0
       ? _bigAd
       : index % 6 == 0
           ? _smallAd
-          : Container(height: 10, color: Colors.black);
+          : Container();
 }
 
-NativeAd fullNativeAd({double padding = 16}) {
+NativeAd fullNativeAd(BuildContext context, {double padding = 16}) {
   return NativeAd(
     height: 300,
     unitId: 'ca-app-pub-9745500678773453/9054369886',
@@ -25,7 +25,40 @@ NativeAd fullNativeAd({double padding = 16}) {
         child: child,
       );
     },
-    buildLayout: fullBuilder,
+    buildLayout: (ratingBar, media, icon, headline, advertiser, body, price,
+        store, attribuition, button) {
+      return AdLinearLayout(
+        padding: EdgeInsets.all(10),
+        width: MATCH_PARENT,
+        decoration: AdDecoration(
+          backgroundColor: Theme.of(context).backgroundColor,
+        ),
+        children: [
+          media,
+          AdLinearLayout(
+            children: [
+              icon,
+              AdLinearLayout(children: [
+                headline,
+                AdLinearLayout(
+                  children: [attribuition, advertiser, ratingBar],
+                  orientation: HORIZONTAL,
+                  width: MATCH_PARENT,
+                ),
+              ], margin: EdgeInsets.only(left: 4)),
+            ],
+            gravity: LayoutGravity.center_horizontal,
+            width: WRAP_CONTENT,
+            orientation: HORIZONTAL,
+            margin: EdgeInsets.only(top: 6),
+          ),
+          AdLinearLayout(
+            children: [button],
+            orientation: HORIZONTAL,
+          ),
+        ],
+      );
+    },
     icon: AdImageView(size: 40),
     headline: AdTextView(
       style: TextStyle(
@@ -65,7 +98,7 @@ NativeAd fullNativeAd({double padding = 16}) {
   );
 }
 
-NativeAd smallNativeAd({double padding = 16}) {
+NativeAd smallNativeAd(BuildContext context, {double padding = 16}) {
   return NativeAd(
     unitId: 'ca-app-pub-9745500678773453/9054369886',
     // unitId: NativeAdController.testUnitId,
@@ -76,58 +109,8 @@ NativeAd smallNativeAd({double padding = 16}) {
         child: child,
       );
     },
-    buildLayout: secondBuilder,
-    icon: AdImageView(size: 80),
-    headline: AdTextView(
-      style: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      maxLines: 1,
-    ),
-    media: AdMediaView(height: 80, width: 120),
-  );
-}
-
-AdLayoutBuilder get fullBuilder => (ratingBar, media, icon, headline,
-        advertiser, body, price, store, attribuition, button) {
-      return AdLinearLayout(
-        padding: EdgeInsets.all(10),
-        width: MATCH_PARENT,
-        decoration: AdDecoration(
-          backgroundColor: Colors.red,
-          borderRadius: AdBorderRadius.all(26),
-        ),
-        children: [
-          media,
-          AdLinearLayout(
-            children: [
-              icon,
-              AdLinearLayout(children: [
-                headline,
-                AdLinearLayout(
-                  children: [attribuition, advertiser, ratingBar],
-                  orientation: HORIZONTAL,
-                  width: MATCH_PARENT,
-                ),
-              ], margin: EdgeInsets.only(left: 4)),
-            ],
-            gravity: LayoutGravity.center_horizontal,
-            width: WRAP_CONTENT,
-            orientation: HORIZONTAL,
-            margin: EdgeInsets.only(top: 6),
-          ),
-          AdLinearLayout(
-            children: [button],
-            orientation: HORIZONTAL,
-          ),
-        ],
-      );
-    };
-
-AdLayoutBuilder get secondBuilder => (ratingBar, media, icon, headline,
-        advertiser, body, price, store, attribution, button) {
+    buildLayout: (ratingBar, media, icon, headline, advertiser, body, price,
+        store, attribution, button) {
       return AdLinearLayout(
         padding: EdgeInsets.all(10),
         // The first linear layout width needs to be extended to the
@@ -135,8 +118,7 @@ AdLayoutBuilder get secondBuilder => (ratingBar, media, icon, headline,
         width: MATCH_PARENT,
         orientation: HORIZONTAL,
         decoration: AdDecoration(
-          backgroundColor: Colors.red,
-          borderRadius: AdBorderRadius.all(26),
+          backgroundColor: Theme.of(context).backgroundColor,
         ),
         children: [
           icon,
@@ -155,4 +137,16 @@ AdLayoutBuilder get secondBuilder => (ratingBar, media, icon, headline,
           ),
         ],
       );
-    };
+    },
+    icon: AdImageView(size: 80),
+    headline: AdTextView(
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      maxLines: 1,
+    ),
+    media: AdMediaView(height: 80, width: 120),
+  );
+}

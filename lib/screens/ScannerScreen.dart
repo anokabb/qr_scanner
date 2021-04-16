@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_qr_reader/flutter_qr_reader.dart';
@@ -23,16 +22,6 @@ class ScannerScreen extends StatefulWidget {
 class _ScannerScreenState extends State<ScannerScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   late QRViewController controller;
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      controller.pauseCamera();
-    } else if (Platform.isIOS) {
-      controller.resumeCamera();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +49,16 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 bottom: 20,
                 child: Card(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      CupertinoButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.image_rounded,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
+                      // CupertinoButton(
+                      //   padding: EdgeInsets.zero,
+                      //   onPressed: () {},
+                      //   child: Icon(
+                      //     Icons.image_rounded,
+                      //     color: Theme.of(context).primaryColor,
+                      //   ),
+                      // ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
@@ -105,7 +95,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
                         },
                       ),
                     ],
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   ),
                   color: Theme.of(context).backgroundColor,
                   shape: RoundedRectangleBorder(
