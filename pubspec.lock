@@ -420,6 +420,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  recognition_qrcode:
+    dependency: "direct main"
+    description:
+      name: recognition_qrcode
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   screenshot:
     dependency: "direct main"
     description:

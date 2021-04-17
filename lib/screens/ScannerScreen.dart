@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_qr_reader/flutter_qr_reader.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -11,6 +10,7 @@ import '../models/QR.dart';
 import '../cubit/flash_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'ResultScreen.dart';
+import 'package:recognition_qrcode/recognition_qrcode.dart';
 
 class ScannerScreen extends StatefulWidget {
   ScannerScreen();
@@ -26,13 +26,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => FlashCubit(),
-        child: BlocBuilder<FlashCubit, FlashState>(builder: (context, state) {
+      create: (context) => FlashCubit(),
+      child: BlocBuilder<FlashCubit, FlashState>(
+        builder: (context, state) {
           return Stack(
             children: [
-              // Container(
-              //   color: Colors.yellow,
-              // ),
               QRView(
                 key: qrKey,
                 onQRViewCreated: _onQRViewCreated,
@@ -51,18 +49,18 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      // CupertinoButton(
-                      //   padding: EdgeInsets.zero,
-                      //   onPressed: () {},
-                      //   child: Icon(
-                      //     Icons.image_rounded,
-                      //     color: Theme.of(context).primaryColor,
-                      //   ),
-                      // ),
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: pickImage,
+                        child: Icon(
+                          Icons.image_rounded,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          controller.flipCamera();
+                          // controller.flipCamera();
                         },
                         child: Icon(
                           Icons.flip_camera_ios_outlined,
@@ -108,32 +106,37 @@ class _ScannerScreenState extends State<ScannerScreen> {
               )
             ],
           );
-        }));
+        },
+      ),
+    );
   }
 
   Future pickImage() async {
     final PickedFile? pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
-    String qrData = '';
-    // await FlutterQrReader.imgScan(pickedFile!.path);
-    print('qrData : $qrData');
-    if (qrData.isEmpty) {
+
+    try {
+      Map map = await RecognitionQrcode.recognition(pickedFile!.path);
+      String qrData = map['value'];
+
+      if (qrData.isEmpty) {
+        Fluttertoast.showToast(
+          msg: translate(context, 'no_qr'),
+        );
+      } else {
+        QR Qr = QR(value: qrData, isScanned: true);
+        DatabaseProvider.db.insert(context, Qr);
+        pushNewScreen(
+          context,
+          screen: ResultScreen(Qr),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.slideUp,
+        );
+      }
+    } catch (e) {
       Fluttertoast.showToast(
         msg: translate(context, 'no_qr'),
       );
-    } else {
-      QR Qr = QR(value: qrData, isScanned: true);
-      DatabaseProvider.db.insert(context, Qr);
-      pushNewScreen(
-        context,
-        screen: ResultScreen(Qr),
-        withNavBar: false,
-        pageTransitionAnimation: PageTransitionAnimation.slideUp,
-      );
-      // Fluttertoast.showToast(
-      //   msg: qrData,
-      //   backgroundColor: Colors.green,
-      // );
     }
   }
 
