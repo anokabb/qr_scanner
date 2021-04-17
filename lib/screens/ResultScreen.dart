@@ -9,9 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qr_scanner/models/AdsUnitId.dart';
+import '../models/AdsUnitId.dart';
 import '../components/Ads.dart';
-import 'MainScreen.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
 import '../cubit/theme_cubit.dart';
@@ -21,8 +20,9 @@ import '../components/CuperIcon.dart';
 import '../components/CustomAppBar.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
+import 'package:wc_flutter_share/wc_flutter_share.dart';
+import 'MainScreen.dart';
 
 class ResultScreen extends StatefulWidget {
   final QR Qr;
@@ -159,10 +159,16 @@ class _ResultScreenState extends State<ResultScreen> {
                       padding: const EdgeInsets.all(12.0),
                       child: Screenshot(
                         controller: screenshotController,
-                        child: QrImage(
-                          data: widget.Qr.value,
-                          version: QrVersions.auto,
-                          size: MediaQuery.of(context).size.width * 0.5,
+                        child: Container(
+                          color:
+                              BlocProvider.of<ThemeCubit>(context).state.isDark
+                                  ? Colors.white
+                                  : Theme.of(context).canvasColor,
+                          child: QrImage(
+                            data: widget.Qr.value,
+                            version: QrVersions.auto,
+                            size: MediaQuery.of(context).size.width * 0.5,
+                          ),
                         ),
                       ),
                     ),
@@ -177,11 +183,17 @@ class _ResultScreenState extends State<ResultScreen> {
                             screenshotController
                                 .capture()
                                 .then((Uint8List? image) async {
-                              Directory directory =
-                                  await getApplicationDocumentsDirectory();
-                              File file = await File(directory.path + '/qr.png')
-                                  .writeAsBytes(image!);
-                              Share.shareFiles([file.path]);
+                              // Directory directory =
+                              //     await getApplicationDocumentsDirectory();
+                              // File file = await File(directory.path + '/qr.png')
+                              //     .writeAsBytes(image!);
+                              // Share.shareFiles([file.path]);
+
+                              await WcFlutterShare.share(
+                                  sharePopupTitle: 'share',
+                                  fileName: 'qrCode.png',
+                                  mimeType: 'image/png',
+                                  bytesOfFile: image);
                             }).catchError((onError) {
                               print(onError);
                             });
@@ -199,9 +211,8 @@ class _ResultScreenState extends State<ResultScreen> {
                               );
                               final filePath = await FlutterFileDialog.saveFile(
                                   params: params);
-
-                              MainScreen.showInterstitial();
                               print(filePath);
+                              MainScreen.showInterstitial();
                             }).catchError((onError) {
                               print(onError);
                             });

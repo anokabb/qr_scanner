@@ -35,6 +35,7 @@ dependencies:
   qr_code_scanner: ^0.4.0
   qr_flutter: ^4.0.0
   recognition_qrcode: ^0.0.7
+  wc_flutter_share: ^0.4.0
 
 dev_dependencies:
   flutter_test:

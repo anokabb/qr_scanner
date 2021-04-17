@@ -60,7 +60,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          // controller.flipCamera();
+                          controller.flipCamera();
                         },
                         child: Icon(
                           Icons.flip_camera_ios_outlined,

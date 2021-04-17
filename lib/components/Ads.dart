@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
-import 'package:qr_scanner/models/AdsUnitId.dart';
+import '../models/AdsUnitId.dart';
 
 Widget separatorBuilder(
   BuildContext context,
