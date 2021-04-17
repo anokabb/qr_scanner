@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
+import 'package:qr_scanner/models/AdsUnitId.dart';
 
 Widget separatorBuilder(
   BuildContext context,
@@ -17,8 +18,7 @@ Widget separatorBuilder(
 NativeAd fullNativeAd(BuildContext context, {double padding = 16}) {
   return NativeAd(
     height: 300,
-    unitId: 'ca-app-pub-9745500678773453/9054369886',
-    // unitId: NativeAdController.testUnitId,
+    unitId: AdsUnitID.NativeAdUnitID,
     builder: (context, child) {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: padding),
@@ -100,8 +100,7 @@ NativeAd fullNativeAd(BuildContext context, {double padding = 16}) {
 
 NativeAd smallNativeAd(BuildContext context, {double padding = 16}) {
   return NativeAd(
-    unitId: 'ca-app-pub-9745500678773453/9054369886',
-    // unitId: NativeAdController.testUnitId,
+    unitId: AdsUnitID.NativeAdUnitID,
     height: 100,
     builder: (context, child) {
       return Padding(

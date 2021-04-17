@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qr_scanner/models/AdsUnitId.dart';
 import '../components/Ads.dart';
 import 'MainScreen.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -215,8 +216,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ),
       ),
       bottomNavigationBar: BannerAd(
-        // unitId: BannerAdController.testUnitId,
-        unitId: 'ca-app-pub-9745500678773453/3503849670',
+        unitId: AdsUnitID.BannerUnitID,
         size: BannerSize.ADAPTIVE,
       ),
     );

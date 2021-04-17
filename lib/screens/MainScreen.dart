@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/models/AdsUnitId.dart';
 import '../cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../bloc/qr_bloc.dart';
@@ -23,11 +24,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   //*                                   Ads                                    */
 
-  static final rewardedInterstitial =
-      RewardedInterstitialAd(unitId: 'ca-app-pub-9745500678773453/5870992710'
-          // unitId: RewardedAd.testUnitId,
-          )
-        ..load();
+  static final rewardedInterstitial = RewardedInterstitialAd(
+    unitId: AdsUnitID.RewardedUnitID,
+  )..load();
 
   static showInterstitial() async {
     if (!rewardedInterstitial.isAvailable) await rewardedInterstitial.load();
@@ -127,8 +126,7 @@ class _MainScreenState extends State<MainScreen> {
                 return Container(
                   color: Theme.of(context).backgroundColor,
                   child: BannerAd(
-                    unitId: 'ca-app-pub-9745500678773453/3503849670',
-                    // unitId: BannerAdController.testUnitId,
+                    unitId: AdsUnitID.BannerUnitID,
                     size: BannerSize.ADAPTIVE,
                   ),
                 );
