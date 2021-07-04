@@ -9,7 +9,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Utils {
   static rateApp(BuildContext context, {required Function() action}) async {
-    double rating = 0;
+    double rating = 4.5;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? rated = prefs.getBool('rated');
 
