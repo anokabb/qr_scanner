@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_scanner/Utils/Utils.dart';
 import '../models/AdsUnitId.dart';
 import '../cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -26,6 +28,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  bool secondBackClick = false;
   //*                                   Ads                                    */
 
   static final rewardedInterstitial = RewardedInterstitialAd(
@@ -105,9 +108,14 @@ class _MainScreenState extends State<MainScreen> {
               }
             }
           },
-          onWillPop: (context) async {
-            log('pop');
-            return true;
+          onWillPop: (_) async {
+            if (secondBackClick) {
+              SystemNavigator.pop();
+            } else {
+              secondBackClick = true;
+              await Utils.rateApp(context, action: () => SystemNavigator.pop());
+            }
+            return false;
           },
           confineInSafeArea: true,
           backgroundColor: Theme.of(context).backgroundColor,

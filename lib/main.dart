@@ -11,9 +11,9 @@ import 'screens/MainScreen.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light));
+  WidgetsFlutterBinding.ensureInitialized();
   await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
