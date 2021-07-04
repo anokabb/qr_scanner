@@ -32,133 +32,128 @@ class _SettingsScreenState extends State<SettingsScreen> {
           translate(context, 'settings'),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SettingItem(
-              title: translate(context, 'theme'),
-              onTap: () {
-                BlocProvider.of<ThemeCubit>(context).changeTheme();
+      body: ListView(
+        children: <Widget>[
+          SettingItem(
+            title: translate(context, 'theme'),
+            onTap: () {
+              BlocProvider.of<ThemeCubit>(context).changeTheme();
+              MainScreen.showInterstitial();
+            },
+            child: Row(
+              children: [
+                Text(
+                  BlocProvider.of<ThemeCubit>(context).state.isDark
+                      ? translate(context, 'dark')
+                      : translate(context, 'light'),
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Icon(
+                  BlocProvider.of<ThemeCubit>(context).state.isDark
+                      ? Icons.nights_stay_rounded
+                      : Icons.wb_sunny,
+                  color: Theme.of(context).primaryColor,
+                  size: 30,
+                ),
+              ],
+            ),
+          ),
+          SettingItem(
+            title: translate(context, 'language'),
+            onTap: () {},
+            child: DropdownButton(
+              underline: Container(),
+              items: [
+                DropdownMenuItem(
+                  child: Text(
+                    translate(context, 'english'),
+                    style: TextStyle(color: Theme.of(context).splashColor),
+                  ),
+                  value: Languages.ENGLISH_id,
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    translate(context, 'french'),
+                    style: TextStyle(color: Theme.of(context).splashColor),
+                  ),
+                  value: Languages.FRENCH_id,
+                ),
+                DropdownMenuItem(
+                  child: Text(
+                    translate(context, 'arabic'),
+                    style: TextStyle(color: Theme.of(context).splashColor),
+                  ),
+                  value: Languages.ARABIC_id,
+                ),
+              ],
+              onChanged: (index) {
+                if (index == Languages.ENGLISH_id) {
+                  BlocProvider.of<LocaleCubit>(context).toEnglish();
+                } else if (index == Languages.FRENCH_id) {
+                  BlocProvider.of<LocaleCubit>(context).toFrench();
+                } else if (index == Languages.ARABIC_id) {
+                  BlocProvider.of<LocaleCubit>(context).toArabic();
+                }
                 MainScreen.showInterstitial();
               },
-              child: Row(
-                children: [
-                  Text(
-                    BlocProvider.of<ThemeCubit>(context).state.isDark
-                        ? translate(context, 'dark')
-                        : translate(context, 'light'),
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Icon(
-                    BlocProvider.of<ThemeCubit>(context).state.isDark
-                        ? Icons.nights_stay_rounded
-                        : Icons.wb_sunny,
-                    color: Theme.of(context).primaryColor,
-                    size: 30,
-                  ),
-                ],
-              ),
+              value: BlocProvider.of<LocaleCubit>(context).state.langId,
+              dropdownColor: Theme.of(context).canvasColor,
             ),
-            SettingItem(
-              title: translate(context, 'language'),
-              onTap: () {},
-              child: DropdownButton(
-                underline: Container(),
-                items: [
-                  DropdownMenuItem(
-                    child: Text(
-                      translate(context, 'english'),
-                      style: TextStyle(color: Theme.of(context).splashColor),
-                    ),
-                    value: Languages.ENGLISH_id,
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      translate(context, 'french'),
-                      style: TextStyle(color: Theme.of(context).splashColor),
-                    ),
-                    value: Languages.FRENCH_id,
-                  ),
-                  DropdownMenuItem(
-                    child: Text(
-                      translate(context, 'arabic'),
-                      style: TextStyle(color: Theme.of(context).splashColor),
-                    ),
-                    value: Languages.ARABIC_id,
-                  ),
-                ],
-                onChanged: (index) {
-                  if (index == Languages.ENGLISH_id) {
-                    BlocProvider.of<LocaleCubit>(context).toEnglish();
-                  } else if (index == Languages.FRENCH_id) {
-                    BlocProvider.of<LocaleCubit>(context).toFrench();
-                  } else if (index == Languages.ARABIC_id) {
-                    BlocProvider.of<LocaleCubit>(context).toArabic();
-                  }
-                  MainScreen.showInterstitial();
-                },
-                value: BlocProvider.of<LocaleCubit>(context).state.langId,
-                dropdownColor: Theme.of(context).canvasColor,
-              ),
-            ),
-            SettingItem(
-              title: translate(context, 'rate_app'),
-              onTap: () async {
-                InAppReview.instance.openStoreListing();
-              },
-              child: Row(
-                children: List.generate(
-                  5,
-                  (index) => Icon(
-                    Icons.star_border_outlined,
-                    color: Theme.of(context).primaryColor,
-                    size: 30,
-                  ),
+          ),
+          SettingItem(
+            title: translate(context, 'rate_app'),
+            onTap: () async {
+              InAppReview.instance.openStoreListing();
+            },
+            child: Row(
+              children: List.generate(
+                5,
+                (index) => Icon(
+                  Icons.star_border_outlined,
+                  color: Theme.of(context).primaryColor,
+                  size: 30,
                 ),
               ),
             ),
-            SettingItem(
-              title: translate(context, 'more_apps'),
-              onTap: () {
-                try {
-                  launch("market://details?id=AK.Dev");
-                } on PlatformException catch (_) {
-                  launch(
-                      "https://play.google.com/store/apps/details?id=AK.Dev");
-                } finally {
-                  launch(
-                      "https://play.google.com/store/apps/details?id=AK.Dev");
-                }
-              },
-              child: Icon(
-                Icons.apps_rounded,
-                color: Theme.of(context).primaryColor,
-                size: 30,
-              ),
+          ),
+          SettingItem(
+            title: translate(context, 'more_apps'),
+            onTap: () {
+              try {
+                launch("market://details?id=AK.Dev");
+              } on PlatformException catch (_) {
+                launch("https://play.google.com/store/apps/details?id=AK.Dev");
+              } finally {
+                launch("https://play.google.com/store/apps/details?id=AK.Dev");
+              }
+            },
+            child: Icon(
+              Icons.apps_rounded,
+              color: Theme.of(context).primaryColor,
+              size: 30,
             ),
-            SettingItem(
-              title: translate(context, 'share_app'),
-              onTap: () {
-                Share.share('https://play.google.com/store/apps/details?id=' +
-                    "com.akdev.workoutplanner");
-              },
-              child: Icon(
-                Icons.share_rounded,
-                color: Theme.of(context).primaryColor,
-                size: 30,
-              ),
+          ),
+          SettingItem(
+            title: translate(context, 'share_app'),
+            onTap: () {
+              Share.share('https://play.google.com/store/apps/details?id=' +
+                  "com.akdev.workoutplanner");
+            },
+            child: Icon(
+              Icons.share_rounded,
+              color: Theme.of(context).primaryColor,
+              size: 30,
             ),
-            SizedBox(
-              height: 20,
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 20,
+          )
+        ],
       ),
     );
   }
