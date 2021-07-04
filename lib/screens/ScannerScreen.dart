@@ -9,19 +9,17 @@ import '../db/database_provider.dart';
 import '../models/QR.dart';
 import '../cubit/flash_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'MainScreen.dart';
 import 'ResultScreen.dart';
 import 'package:recognition_qrcode/recognition_qrcode.dart';
 
 class ScannerScreen extends StatefulWidget {
-  ScannerScreen();
-
   @override
   _ScannerScreenState createState() => _ScannerScreenState();
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  late QRViewController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          controller.flipCamera();
+                          MainScreen.controller!.flipCamera();
                         },
                         child: Icon(
                           Icons.flip_camera_ios_outlined,
@@ -72,8 +70,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
                           return CupertinoButton(
                             padding: EdgeInsets.zero,
                             onPressed: () {
-                              controller.toggleFlash();
-                              controller.getFlashStatus().then((turnedOn) {
+                              MainScreen.controller!.toggleFlash();
+                              MainScreen.controller!
+                                  .getFlashStatus()
+                                  .then((turnedOn) {
                                 if (turnedOn!) {
                                   BlocProvider.of<FlashCubit>(context)
                                       .flashOn();
@@ -141,7 +141,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
+    MainScreen.controller = controller;
     controller.scannedDataStream.listen((scanData) async {
       controller.pauseCamera();
       print(scanData);
@@ -159,7 +159,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   @override
   void dispose() {
-    controller.dispose();
+    MainScreen.controller!.dispose();
     super.dispose();
   }
 }

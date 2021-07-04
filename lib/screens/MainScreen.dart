@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../models/AdsUnitId.dart';
 import '../cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -13,6 +16,7 @@ import 'SettingsScreen.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 class MainScreen extends StatefulWidget {
+  static QRViewController? controller;
   static showInterstitial() {
     _MainScreenState.showInterstitial();
   }
@@ -38,12 +42,12 @@ class _MainScreenState extends State<MainScreen> {
 
   //*                                   Ads                                    */
 
-  late PersistentTabController _controller;
+  late PersistentTabController _pagecontroller;
 
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 0);
+    _pagecontroller = PersistentTabController(initialIndex: 0);
   }
 
   List<Widget> _buildScreens() {
@@ -87,9 +91,24 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         body: PersistentTabView(
           context,
-          controller: _controller,
+          controller: _pagecontroller,
           screens: _buildScreens(),
           items: _navBarsItems(),
+          onItemSelected: (pos) {
+            if (MainScreen.controller != null) {
+              if (pos == 0) {
+                log('resume camera');
+                MainScreen.controller!.resumeCamera();
+              } else {
+                log('pause camera');
+                MainScreen.controller!.pauseCamera();
+              }
+            }
+          },
+          onWillPop: (context) async {
+            log('pop');
+            return true;
+          },
           confineInSafeArea: true,
           backgroundColor: Theme.of(context).backgroundColor,
           handleAndroidBackButtonPress: true, // Default is true.
