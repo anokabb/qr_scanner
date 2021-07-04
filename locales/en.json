@@ -1,6 +1,9 @@
 {
     "language": "Language",
     "scan": "Scan",
+    "rating_title": "Do you enjoy using your Workout Planner App?",
+    "submit": "Submit",
+    "cancel": "Cancel",
     "history": "History",
     "create": "Create",
     "settings": "Settings",

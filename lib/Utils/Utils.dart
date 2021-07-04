@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -36,7 +37,7 @@ class Utils {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Do you enjoy using your Workout Planner App?',
+                                translate(context, 'rating_title'),
                                 style: TextStyle(
                                     color: Theme.of(context).splashColor,
                                     fontWeight: FontWeight.bold,
@@ -72,7 +73,7 @@ class Utils {
                                       Navigator.pop(cnt);
                                     },
                                     child: Text(
-                                      'Cancel',
+                                      translate(context, 'cancel'),
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.bold,
@@ -92,7 +93,7 @@ class Utils {
                                       }
                                     },
                                     child: Text(
-                                      'Submit',
+                                      translate(context, 'submit'),
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.bold,

@@ -1,6 +1,9 @@
 {
     "language": "اللغة",
     "scan": "مسح",
+    "rating_title": "هل تستمتع باستخدام التطبيق ؟",
+    "submit": "تقييم",
+    "cancel": "إلغاء",
     "history": "السجل",
     "create": "إنشاء",
     "settings": "الإعدادات",

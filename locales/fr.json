@@ -1,6 +1,9 @@
 {
     "language": "Langue",
     "scan": "Analyse",
+    "rating_title": "Aimez-vous utiliser votre application Workout Planner?",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
     "history": "Histoire",
     "create": "Créer",
     "settings": "Paramètres",
