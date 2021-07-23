@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +8,6 @@ import 'package:qr_scanner/Utils/Utils.dart';
 import '../models/AdsUnitId.dart';
 import '../cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
-import '../bloc/qr_bloc.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';
 import 'ScannerScreen.dart';
@@ -31,8 +28,8 @@ class _MainScreenState extends State<MainScreen> {
   bool secondBackClick = false;
   //*                                   Ads                                    */
 
-  static final rewardedInterstitial = RewardedInterstitialAd(
-    unitId: AdsUnitID.RewardedUnitID,
+  static final rewardedInterstitial = InterstitialAd(
+    unitId: AdsUnitID.InterstitialUnitID,
   )..load();
 
   static showInterstitial() async {
@@ -142,21 +139,6 @@ class _MainScreenState extends State<MainScreen> {
         ),
         navBarStyle:
             NavBarStyle.style1, // Choose the nav bar style with this property.
-      ),
-      bottomNavigationBar: BlocBuilder<InternetCubit, InternetState>(
-        builder: (context, state) {
-          if (state is InternetConnected) {
-            return Container(
-              color: Theme.of(context).backgroundColor,
-              child: BannerAd(
-                unitId: AdsUnitID.BannerUnitID,
-                size: BannerSize.ADAPTIVE,
-              ),
-            );
-          } else {
-            return Container(height: 0);
-          }
-        },
       ),
     );
   }

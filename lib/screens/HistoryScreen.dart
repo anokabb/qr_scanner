@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/components/MyBanner.dart';
 import '../components/Ads.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
@@ -44,96 +45,114 @@ class _HistoryScreenState extends State<HistoryScreen> {
             translate(context, 'history'),
           ),
         ),
-        body: BlocBuilder<HistoryCubit, HistoryState>(
-            builder: (context, historyState) {
-          return Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ClayContainer(
-                  color: Theme.of(context).canvasColor,
-                  borderRadius: 50,
-                  spread: BlocProvider.of<ThemeCubit>(context).state.isDark
-                      ? 0
-                      : 10,
-                  depth: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            BlocProvider.of<HistoryCubit>(context)
-                                .scannedHistory();
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor.withOpacity(
-                                  historyState is HistoryScanned ? 1 : 0.5),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 20),
-                              child: Text(
-                                translate(context, 'scanned'),
-                                style: TextStyle(
-                                    fontSize: 22, color: Colors.white),
+        body: Column(
+          children: [
+            Expanded(
+              child: BlocBuilder<HistoryCubit, HistoryState>(
+                  builder: (context, historyState) {
+                return Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ClayContainer(
+                        color: Theme.of(context).canvasColor,
+                        borderRadius: 50,
+                        spread:
+                            BlocProvider.of<ThemeCubit>(context).state.isDark
+                                ? 0
+                                : 10,
+                        depth: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  BlocProvider.of<HistoryCubit>(context)
+                                      .scannedHistory();
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(
+                                            historyState is HistoryScanned
+                                                ? 1
+                                                : 0.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 4, horizontal: 20),
+                                    child: Text(
+                                      translate(context, 'scanned'),
+                                      style: TextStyle(
+                                          fontSize: 22, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              GestureDetector(
+                                onTap: () {
+                                  BlocProvider.of<HistoryCubit>(context)
+                                      .createdHistory();
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(
+                                            historyState is HistoryScanned
+                                                ? 0.5
+                                                : 1),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 4, horizontal: 20),
+                                    child: Text(
+                                      translate(context, 'created'),
+                                      style: TextStyle(
+                                          fontSize: 22, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            BlocProvider.of<HistoryCubit>(context)
-                                .createdHistory();
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor.withOpacity(
-                                  historyState is HistoryScanned ? 0.5 : 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 20),
-                              child: Text(
-                                translate(context, 'created'),
-                                style: TextStyle(
-                                    fontSize: 22, color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: BlocConsumer<QrBloc, List<QR>>(
-                  builder: (context, Qrs) {
-                    return RefreshIndicator(
-                      color: Theme.of(context).primaryColor,
-                      onRefresh: () {
-                        return DatabaseProvider.db.getQrs(context);
-                      },
-                      child: _getHistoryList(
-                        historyState,
-                        BlocProvider.of<LocaleCubit>(context).state.langCode,
-                        Qrs,
                       ),
-                    );
-                  },
-                  listener: (_, __) {},
-                ),
-              ),
-            ],
-          );
-        }),
+                    ),
+                    Expanded(
+                      child: BlocConsumer<QrBloc, List<QR>>(
+                        builder: (context, Qrs) {
+                          return RefreshIndicator(
+                            color: Theme.of(context).primaryColor,
+                            onRefresh: () {
+                              return DatabaseProvider.db.getQrs(context);
+                            },
+                            child: _getHistoryList(
+                              historyState,
+                              BlocProvider.of<LocaleCubit>(context)
+                                  .state
+                                  .langCode,
+                              Qrs,
+                            ),
+                          );
+                        },
+                        listener: (_, __) {},
+                      ),
+                    ),
+                  ],
+                );
+              }),
+            ),
+            MyBanner(),
+          ],
+        ),
       ),
     );
   }

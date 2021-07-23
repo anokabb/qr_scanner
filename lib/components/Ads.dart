@@ -9,9 +9,9 @@ Widget separatorBuilder(
   NativeAd _bigAd = fullNativeAd(context);
   NativeAd _smallAd = smallNativeAd(context);
   return index == 0
-      ? _bigAd
-      : index % 6 == 0
-          ? _smallAd
+      ? _smallAd
+      : index == 5
+          ? _bigAd
           : Container();
 }
 
