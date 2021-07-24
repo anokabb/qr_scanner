@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_scanner/screens/MainScreen.dart';
 part 'internet_state.dart';
 
 class InternetCubit extends Cubit<InternetState> {
@@ -18,10 +17,6 @@ class InternetCubit extends Cubit<InternetState> {
       } else if (result == ConnectivityResult.none) {
         emitInternetDisconnected();
       }
-      // if (MainScreen.controller != null) {
-      //   MainScreen.controller!.pauseCamera();
-      //   MainScreen.controller!.resumeCamera();
-      // }
     });
   }
 

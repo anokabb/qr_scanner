@@ -1,12 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_scanner/Utils/Utils.dart';
 import '../models/AdsUnitId.dart';
-import '../cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';
@@ -121,7 +119,7 @@ class _MainScreenState extends State<MainScreen> {
         hideNavigationBarWhenKeyboardShows:
             true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
         decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(0.0),
           colorBehindNavBar: Theme.of(context).backgroundColor,
         ),
         popAllScreensOnTapOfSelectedTab: true,

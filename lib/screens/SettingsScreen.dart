@@ -27,6 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        brightness: Brightness.light,
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(
@@ -129,15 +130,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SettingItem(
                   title: translate(context, 'more_apps'),
                   onTap: () {
-                    try {
-                      launch("market://details?id=AK.Dev");
-                    } on PlatformException catch (_) {
-                      launch(
-                          "https://play.google.com/store/apps/details?id=AK.Dev");
-                    } finally {
-                      launch(
-                          "https://play.google.com/store/apps/details?id=AK.Dev");
-                    }
+                    launch(
+                        "https://play.google.com/store/apps/developer?id=AK.Dev");
                   },
                   child: Icon(
                     Icons.apps_rounded,
@@ -150,7 +144,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onTap: () {
                     Share.share(
                         'https://play.google.com/store/apps/details?id=' +
-                            "com.akdev.workoutplanner");
+                            "com.akdev.qrscanner");
                   },
                   child: Icon(
                     Icons.share_rounded,

@@ -38,6 +38,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        brightness: Brightness.light,
         centerTitle: true,
         shape: CustomAppBar(),
         leading: CupertinoButton(

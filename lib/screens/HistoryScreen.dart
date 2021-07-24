@@ -39,6 +39,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
+          brightness: Brightness.light,
           centerTitle: true,
           shape: CustomAppBar(),
           title: Text(
