@@ -27,9 +27,8 @@ class _MainScreenState extends State<MainScreen> {
   bool secondBackClick = false;
   //*                                   Ads                                    */
 
-  static final interstitial = InterstitialAd(
-    unitId: AdsUnitID.InterstitialUnitID,
-  )..load();
+  static final interstitial =
+      InterstitialAd(unitId: AdsUnitID.InterstitialUnitID);
 
   static showInterstitial() async {
     if (!interstitial.isAvailable) await interstitial.load();

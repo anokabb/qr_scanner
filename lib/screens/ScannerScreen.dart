@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_scanner/cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -22,6 +23,16 @@ class ScannerScreen extends StatefulWidget {
 
 class _ScannerScreenState extends State<ScannerScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  @override
+  void initState() {
+    BlocProvider.of<InternetCubit>(context).stream.listen((event) {
+      if (MainScreen.controller != null) {
+        MainScreen.controller!.pauseCamera();
+        MainScreen.controller!.resumeCamera();
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
