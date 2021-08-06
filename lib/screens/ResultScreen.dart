@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../models/AdsUnitId.dart';
-import '../components/Ads.dart';
+import 'package:qr_scanner/components/Ads.dart';
+import 'package:qr_scanner/components/MyBanner.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
 import '../cubit/theme_cubit.dart';
@@ -226,10 +226,7 @@ class _ResultScreenState extends State<ResultScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BannerAd(
-        unitId: AdsUnitID.BannerUnitID,
-        size: BannerSize.ADAPTIVE,
-      ),
+      bottomNavigationBar: MyBanner(),
     );
   }
 }

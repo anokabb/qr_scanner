@@ -158,7 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
             ),
           ),
-          MyBanner()
+          // MyBanner()
         ],
       ),
     );

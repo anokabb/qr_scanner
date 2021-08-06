@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_scanner/Utils/Utils.dart';
+import 'package:qr_scanner/components/MyBanner.dart';
 import '../models/AdsUnitId.dart';
 import '../Utils/Localization/app_localizations.dart';
 import 'CreateScreen.dart';
@@ -26,15 +27,15 @@ class _MainScreenState extends State<MainScreen> {
   bool secondBackClick = false;
   //*                                   Ads                                    */
 
-  static final rewardedInterstitial = InterstitialAd(
+  static final interstitial = InterstitialAd(
     unitId: AdsUnitID.InterstitialUnitID,
   )..load();
 
   static showInterstitial() async {
-    if (!rewardedInterstitial.isAvailable) await rewardedInterstitial.load();
-    if (rewardedInterstitial.isAvailable) {
-      await rewardedInterstitial.show();
-      rewardedInterstitial.load(force: true);
+    if (!interstitial.isAvailable) await interstitial.load();
+    if (interstitial.isAvailable) {
+      await interstitial.show();
+      interstitial.load(force: true);
     }
   }
 
@@ -46,6 +47,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _pagecontroller = PersistentTabController(initialIndex: 0);
+    interstitial.load();
   }
 
   List<Widget> _buildScreens() {
@@ -138,6 +140,7 @@ class _MainScreenState extends State<MainScreen> {
         navBarStyle:
             NavBarStyle.style1, // Choose the nav bar style with this property.
       ),
+      bottomNavigationBar: MyBanner(),
     );
   }
 }

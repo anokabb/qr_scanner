@@ -5,8 +5,6 @@ import 'package:qr_scanner/cubit/internet_cubit.dart';
 import 'package:qr_scanner/models/AdsUnitId.dart';
 
 class MyBanner extends StatelessWidget {
-  const MyBanner();
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<InternetCubit, InternetState>(
