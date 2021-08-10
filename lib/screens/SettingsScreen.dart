@@ -180,6 +180,7 @@ class SettingItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
       child: ClayContainer(
+        height: 70,
         color: Theme.of(context).canvasColor,
         borderRadius: 16,
         spread: BlocProvider.of<ThemeCubit>(context).state.isDark ? 0 : 10,

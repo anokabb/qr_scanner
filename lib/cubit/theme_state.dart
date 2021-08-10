@@ -17,9 +17,4 @@ class ThemeState {
       isDark: map['isDark'],
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory ThemeState.fromJson(String source) =>
-      ThemeState.fromMap(json.decode(source));
 }

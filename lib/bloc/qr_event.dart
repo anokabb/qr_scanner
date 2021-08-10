@@ -10,29 +10,3 @@ class SetQrs extends QrEvent {
     QrList = Qrs;
   }
 }
-
-// class AddQR extends QrEvent {
-//   late QR newQR;
-
-//   AddQR(QR qr) {
-//     newQR = qr;
-//   }
-// }
-
-// class DeleteQR extends QrEvent {
-//   late int id;
-
-//   DeleteQR(int index) {
-//     id = index;
-//   }
-// }
-
-// class UpdateQR extends QrEvent {
-//   late QR newQr;
-//   late int id;
-
-//   UpdateQR(QR qr, int index) {
-//     newQr = qr;
-//     id = index;
-//   }
-// }

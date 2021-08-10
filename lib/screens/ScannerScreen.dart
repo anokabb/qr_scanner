@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -155,7 +154,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   void _onQRViewCreated(QRViewController controller) {
     MainScreen.controller = controller;
-    log('ddd');
     controller.scannedDataStream.listen((scanData) async {
       log(scanData.toString());
       controller.pauseCamera();

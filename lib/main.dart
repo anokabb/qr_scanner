@@ -5,18 +5,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_scanner/bloc/qr_bloc.dart';
+import 'package:qr_scanner/screens/CreateScreen.dart';
+import 'package:qr_scanner/screens/HistoryScreen.dart';
 import 'Utils/Localization/app_localizations_setup.dart';
 import 'cubit/internet_cubit.dart';
 import 'cubit/locale_cubit.dart';
 import 'cubit/theme_cubit.dart';
 import 'models/Themes.dart';
-import 'screens/MainScreen.dart';
 import 'package:native_admob_flutter/native_admob_flutter.dart';
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.light, statusBarColor: Colors.red));
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light));
   await MobileAds.initialize();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
                 themeMode: themeState.isDark ? ThemeMode.dark : ThemeMode.light,
                 home: BlocProvider(
                   create: (context) => QrBloc([]),
-                  child: MainScreen(),
+                  child: CreateScreen(),
                 ),
                 supportedLocales: AppLocalizationsSetup.supportedLocales,
                 localizationsDelegates:
