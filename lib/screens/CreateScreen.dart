@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qr_scanner/components/MyBanner.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../cubit/theme_cubit.dart';
 import '../db/database_provider.dart';
@@ -31,6 +30,7 @@ class _CreateScreenState extends State<CreateScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        brightness: Brightness.light,
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(

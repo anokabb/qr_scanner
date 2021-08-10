@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_scanner/components/MyBanner.dart';
-import 'MainScreen.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -12,7 +10,6 @@ import '../components/CustomAppBar.dart';
 import '../cubit/locale_cubit.dart';
 import '../cubit/theme_cubit.dart';
 import '../models/Languages.dart';
-import 'package:in_app_review/in_app_review.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen();
@@ -27,7 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        brightness: Brightness.light,
+        // brightness: Brightness.light,
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(
@@ -114,7 +111,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SettingItem(
                   title: translate(context, 'rate_app'),
                   onTap: () async {
-                    InAppReview.instance.openStoreListing();
+                    launch(
+                        "https://play.google.com/store/apps/details?id=com.akdev.qrscanner");
                   },
                   child: Row(
                     children: List.generate(

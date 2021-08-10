@@ -31,8 +31,9 @@ class _MainScreenState extends State<MainScreen> {
       InterstitialAd(unitId: AdsUnitID.InterstitialUnitID);
 
   static showInterstitial() async {
-    if (!interstitial.isAvailable) await interstitial.load();
-    if (interstitial.isAvailable) {
+    if (!interstitial.isAvailable) {
+      await interstitial.load();
+    } else {
       await interstitial.show();
       interstitial.load(force: true);
     }
@@ -51,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _buildScreens() {
     return [
-      // ScannerScreen(),
+      ScannerScreen(),
       HistoryScreen(),
       CreateScreen(),
       SettingsScreen(),
@@ -60,11 +61,11 @@ class _MainScreenState extends State<MainScreen> {
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
-      // PersistentBottomNavBarItem(
-      //   icon: Icon(Icons.qr_code_scanner_rounded),
-      //   activeColorPrimary: Theme.of(context).primaryColor,
-      //   title: (translate(context, 'scan')),
-      // ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.qr_code_scanner_rounded),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        title: (translate(context, 'scan')),
+      ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.history),
         activeColorPrimary: Theme.of(context).primaryColor,

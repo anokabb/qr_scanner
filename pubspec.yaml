@@ -25,7 +25,6 @@ dependencies:
   fluttertoast: ^8.0.3
   hydrated_bloc: ^7.0.0
   image_picker: ^0.7.4
-  in_app_review: ^2.0.2
   native_admob_flutter: ^1.5.0
   path_provider: ^2.0.1
   persistent_bottom_nav_bar: ^4.0.2

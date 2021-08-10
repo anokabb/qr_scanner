@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:qr_scanner/Utils/Localization/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   static rateApp(BuildContext context, {required Function() action}) async {
@@ -87,7 +87,8 @@ class Utils {
                                       if (rating >= 3) {
                                         prefs.setBool('rated', true);
                                         Navigator.pop(cnt);
-                                        InAppReview.instance.openStoreListing();
+                                        launch(
+                                            'https://play.google.com/store/apps/details?id=com.akdev.qrscanner');
                                       } else if (rating > 0) {
                                         Navigator.pop(cnt);
                                       }
