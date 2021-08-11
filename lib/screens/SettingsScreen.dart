@@ -1,7 +1,6 @@
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,9 +43,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Row(
                     children: [
                       Text(
-                        BlocProvider.of<ThemeCubit>(context).state.isDark
-                            ? translate(context, 'dark')
-                            : translate(context, 'light'),
+                        BlocProvider.of<ThemeCubit>(context).state
+                                is ThemeFromSystem
+                            ? translate(context, 'auto')
+                            : BlocProvider.of<ThemeCubit>(context).state.isDark
+                                ? translate(context, 'dark')
+                                : translate(context, 'light'),
                         style: TextStyle(
                           fontSize: 18,
                           color: Theme.of(context).primaryColor,
@@ -55,9 +57,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       SizedBox(width: 8),
                       Icon(
-                        BlocProvider.of<ThemeCubit>(context).state.isDark
-                            ? Icons.nights_stay_rounded
-                            : Icons.wb_sunny,
+                        BlocProvider.of<ThemeCubit>(context).state
+                                is ThemeFromSystem
+                            ? Icons.brightness_auto_rounded
+                            : BlocProvider.of<ThemeCubit>(context).state.isDark
+                                ? Icons.nights_stay_rounded
+                                : Icons.wb_sunny,
                         color: Theme.of(context).primaryColor,
                         size: 30,
                       ),

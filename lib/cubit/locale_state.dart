@@ -34,7 +34,3 @@ class LocaleState {
   factory LocaleState.fromJson(String source) =>
       LocaleState.fromMap(json.decode(source));
 }
-
-// class SelectedLocale extends LocaleState {
-//   SelectedLocale(Locale locale) : super(locale);
-// }
