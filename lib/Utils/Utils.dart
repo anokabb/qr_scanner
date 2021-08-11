@@ -45,7 +45,8 @@ class Utils {
                               ),
                               Center(
                                 child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
                                     child: RatingBar.builder(
                                       initialRating: 4.5,
                                       minRating: 1,
@@ -53,8 +54,6 @@ class Utils {
                                       allowHalfRating: true,
                                       glowColor: Theme.of(context).primaryColor,
                                       itemCount: 5,
-                                      itemPadding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
                                       itemBuilder: (context, _) => Icon(
                                         Icons.star,
                                         color: Theme.of(context).primaryColor,
