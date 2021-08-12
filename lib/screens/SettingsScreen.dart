@@ -23,7 +23,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        // brightness: Brightness.light,
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(

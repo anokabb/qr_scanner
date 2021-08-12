@@ -30,7 +30,6 @@ class _CreateScreenState extends State<CreateScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        brightness: Brightness.light,
         centerTitle: true,
         shape: CustomAppBar(),
         title: Text(
@@ -120,7 +119,7 @@ class _CreateScreenState extends State<CreateScreen> {
         context,
         screen: ResultScreen(Qr),
         withNavBar: false,
-        pageTransitionAnimation: PageTransitionAnimation.slideUp,
+        pageTransitionAnimation: PageTransitionAnimation.fade,
       );
       _controller.text = '';
     }

@@ -38,7 +38,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          // brightness: Brightness.light,
           centerTitle: true,
           shape: CustomAppBar(),
           title: Text(
@@ -159,7 +158,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   Widget _getHistoryList(
       HistoryState historyState, String langCode, List<QR> Qrs) {
-    if (historyState is HistoryScanned) {}
     List<QR> _qrList = (historyState is HistoryScanned)
         ? Qrs.where((qr) => qr.isScanned == true).toList()
         : Qrs.where((qr) => qr.isScanned == false).toList();
@@ -190,7 +188,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               context,
               screen: ResultScreen(_qrList[pos]),
               withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.slideUp,
+              pageTransitionAnimation: PageTransitionAnimation.fade,
             );
           },
           child: Dismissible(

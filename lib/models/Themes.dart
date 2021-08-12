@@ -5,7 +5,7 @@ class AppThemes {
     primaryColor: Color.fromRGBO(98, 0, 238, 1),
     appBarTheme: AppBarTheme(
         backgroundColor: Color.fromRGBO(98, 0, 238, 1),
-        brightness: Brightness.light),
+        brightness: Brightness.dark),
     backgroundColor: Colors.white,
     splashColor: Colors.black,
     buttonColor: Colors.white,
@@ -17,7 +17,7 @@ class AppThemes {
     primaryColor: Color.fromRGBO(255, 2, 102, 1),
     appBarTheme: AppBarTheme(
         backgroundColor: Color.fromRGBO(44, 44, 44, 1),
-        brightness: Brightness.light),
+        brightness: Brightness.dark),
     backgroundColor: Colors.black,
     splashColor: Colors.white,
     buttonColor: Color.fromRGBO(44, 44, 44, 1),
