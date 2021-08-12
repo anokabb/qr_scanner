@@ -142,7 +142,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
           context,
           screen: ResultScreen(Qr),
           withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.slideUp,
+          pageTransitionAnimation: PageTransitionAnimation.fade,
         );
       }
     } catch (e) {
@@ -164,7 +164,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         context,
         screen: ResultScreen(Qr),
         withNavBar: false,
-        pageTransitionAnimation: PageTransitionAnimation.slideUp,
+        pageTransitionAnimation: PageTransitionAnimation.fade,
       );
       controller.resumeCamera();
     });
