@@ -4,10 +4,4 @@ class AdsUnitID {
   static const String InterstitialUnitID =
       'ca-app-pub-3940256099942544/1033173712';
   static const String NativeAdUnitID = 'ca-app-pub-3940256099942544/2247696110';
-
-  /// ***** Real Ads *******/
-  // static const String BannerUnitID = 'ca-app-pub-9745500678773453/3503849670';
-  // static const String InterstitialUnitID =
-  //     'ca-app-pub-9745500678773453/5912838205';
-  // static const String NativeAdUnitID = 'ca-app-pub-9745500678773453/9054369886';
 }
