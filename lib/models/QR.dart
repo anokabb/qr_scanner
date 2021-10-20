@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import '../Utils/TimeFormat.dart';
 import '../db/database_provider.dart';
+import 'package:validated/validated.dart' as validate;
 
 class QR {
   int? id;
@@ -72,15 +73,11 @@ class QR {
   }
 
   bool _validateEmail() {
-    return RegExp(
-            r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-        .hasMatch(value);
+    return validate.isEmail(value);
   }
 
   bool _validateURL() {
-    return RegExp(
-            r"((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)")
-        .hasMatch(value);
+    return validate.isURL(value);
   }
 
   bool _validatePhone() {

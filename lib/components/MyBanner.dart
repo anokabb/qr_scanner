@@ -7,6 +7,13 @@ import 'package:qr_scanner/models/AdsUnitId.dart';
 class MyBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return Container(
+      color: Theme.of(context).backgroundColor,
+      child: BannerAd(
+        unitId: AdsUnitID.BannerUnitID,
+        size: BannerSize.ADAPTIVE,
+      ),
+    );
     return BlocBuilder<InternetCubit, InternetState>(
       builder: (context, state) {
         if (state is InternetConnected) {

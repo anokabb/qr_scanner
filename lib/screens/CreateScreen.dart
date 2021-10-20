@@ -101,7 +101,6 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
               ),
             ),
-            // MyBanner()
           ],
         ),
       ),

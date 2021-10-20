@@ -4,8 +4,8 @@ class AppThemes {
   static final ThemeData lightThemeData = ThemeData(
     primaryColor: Color.fromRGBO(98, 0, 238, 1),
     appBarTheme: AppBarTheme(
-        backgroundColor: Color.fromRGBO(98, 0, 238, 1),
-        brightness: Brightness.dark),
+      backgroundColor: Color.fromRGBO(98, 0, 238, 1),
+    ),
     backgroundColor: Colors.white,
     splashColor: Colors.black,
     buttonColor: Colors.white,
@@ -15,9 +15,7 @@ class AppThemes {
 
   static final ThemeData darkThemeData = ThemeData(
     primaryColor: Color.fromRGBO(255, 2, 102, 1),
-    appBarTheme: AppBarTheme(
-        backgroundColor: Color.fromRGBO(44, 44, 44, 1),
-        brightness: Brightness.dark),
+    appBarTheme: AppBarTheme(backgroundColor: Color.fromRGBO(44, 44, 44, 1)),
     backgroundColor: Colors.black,
     splashColor: Colors.white,
     buttonColor: Color.fromRGBO(44, 44, 44, 1),
