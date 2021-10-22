@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:qr_scanner/components/MyBanner.dart';
 import '../components/Ads.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
@@ -149,7 +150,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 );
               }),
             ),
-            // MyBanner(),
+            MyBanner(),
           ],
         ),
       ),

@@ -24,12 +24,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   @override
   void initState() {
-    BlocProvider.of<InternetCubit>(context).stream.listen((event) {
-      if (MainScreen.controller != null) {
-        MainScreen.controller!.pauseCamera();
-        MainScreen.controller!.resumeCamera();
-      }
-    });
+    // BlocProvider.of<InternetCubit>(context).stream.listen((event) {
+    //   if (MainScreen.controller != null) {
+    //     MainScreen.controller!.pauseCamera();
+    //     MainScreen.controller!.resumeCamera();
+    //   }
+    // });
     super.initState();
   }
 

@@ -2,6 +2,7 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qr_scanner/components/MyBanner.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Utils/Localization/app_localizations.dart';
@@ -160,7 +161,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ],
             ),
           ),
-          // MyBanner()
+          MyBanner()
         ],
       ),
     );

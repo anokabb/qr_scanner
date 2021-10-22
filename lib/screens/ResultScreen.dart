@@ -125,6 +125,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             new ClipboardData(text: widget.Qr.value));
                         Fluttertoast.showToast(
                             msg: translate(context, 'copied_clipboard'));
+                        MainScreen.showInterstitial();
                       },
                     ),
                     CuperIcon(

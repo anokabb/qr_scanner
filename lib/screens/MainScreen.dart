@@ -146,7 +146,6 @@ class _MainScreenState extends State<MainScreen> {
             navBarStyle: NavBarStyle
                 .style1, // Choose the nav bar style with this property.
           ),
-          bottomNavigationBar: MyBanner(),
         ),
       ),
     );
