@@ -15,6 +15,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -39,5 +40,8 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9745500678773453~1975145585" />
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="A8Qo9GFeFW6U38SbJs0sE4TK7iaKB8FTzqsrCT3OtIocXuCzM0t-hTG0QcxFNit1cmKTR-nKAN0f3z_L_DU9B4" />
     </application>
 </manifest>

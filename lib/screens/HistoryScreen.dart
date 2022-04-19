@@ -1,9 +1,9 @@
 import 'package:clay_containers/clay_containers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_scanner/components/MyBanner.dart';
+import 'package:sliding_switch/sliding_switch.dart';
 import '../components/Ads.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
@@ -53,82 +53,36 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 return Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: ClayContainer(
-                        color: Theme.of(context).canvasColor,
-                        borderRadius: 50,
-                        spread:
-                            BlocProvider.of<ThemeCubit>(context).state.isDark
-                                ? 0
-                                : 10,
-                        depth: 10,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  BlocProvider.of<HistoryCubit>(context)
-                                      .scannedHistory();
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(
-                                            historyState is HistoryScanned
-                                                ? 1
-                                                : 0.5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 4, horizontal: 20),
-                                    child: Text(
-                                      translate(context, 'scanned'),
-                                      style: TextStyle(
-                                          fontSize: 22, color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  BlocProvider.of<HistoryCubit>(context)
-                                      .createdHistory();
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(
-                                            historyState is HistoryScanned
-                                                ? 0.5
-                                                : 1),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 4, horizontal: 20),
-                                    child: Text(
-                                      translate(context, 'created'),
-                                      style: TextStyle(
-                                          fontSize: 22, color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                      padding: const EdgeInsets.all(16),
+                      child: SlidingSwitch(
+                        value: false,
+                        width: MediaQuery.of(context).size.width - 32,
+                        onChanged: (bool value) {
+                          if (!value) {
+                            BlocProvider.of<HistoryCubit>(context)
+                                .scannedHistory();
+                          } else {
+                            BlocProvider.of<HistoryCubit>(context)
+                                .createdHistory();
+                          }
+                        },
+                        height: 44,
+                        animationDuration: const Duration(milliseconds: 400),
+                        onTap: () {},
+                        onDoubleTap: () {},
+                        onSwipe: () {},
+                        textOff: translate(context, 'scanned'),
+                        textOn: translate(context, 'created'),
+                        colorOn: Colors.white,
+                        colorOff: Colors.white,
+                        background: Theme.of(context).canvasColor,
+                        buttonColor: Theme.of(context).primaryColor,
+                        inactiveColor: Color.fromARGB(255, 103, 116, 128),
                       ),
                     ),
                     Expanded(
                       child: BlocConsumer<QrBloc, List<QR>>(
-                        builder: (context, Qrs) {
+                        builder: (context, _qrs) {
                           return RefreshIndicator(
                             color: Theme.of(context).primaryColor,
                             onRefresh: () {
@@ -139,7 +93,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               BlocProvider.of<LocaleCubit>(context)
                                   .state
                                   .langCode,
-                              Qrs,
+                              _qrs,
                             ),
                           );
                         },
@@ -168,10 +122,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            'images/noData.svg',
-            width: MediaQuery.of(context).size.width / 2,
+            context.read<ThemeCubit>().state.isDark
+                ? 'images/noDataDark.svg'
+                : 'images/noData.svg',
+            width: MediaQuery.of(context).size.width / 1.5,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 12),
           Text(
             translate(context, 'no_data'),
             style: TextStyle(color: Colors.grey.withOpacity(0.6), fontSize: 30),

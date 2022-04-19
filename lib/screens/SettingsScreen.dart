@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:clay_containers/clay_containers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_scanner/components/MyBanner.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/CustomAppBar.dart';
@@ -116,8 +117,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SettingItem(
                   title: translate(context, 'rate_app'),
                   onTap: () async {
-                    launch(
-                        "https://play.google.com/store/apps/details?id=com.akdev.qrscanner");
+                    if (Platform.isIOS) {
+                      // launch(
+                      //     "https://apps.apple.com/app/instant-to-do-pomodoro-timer/id1616722900");
+                    } else if (Platform.isAndroid) {
+                      launch(
+                          "https://play.google.com/store/apps/details?id=com.akdev.qrscanner");
+                    }
                   },
                   child: Row(
                     children: List.generate(
@@ -130,24 +136,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                 ),
-                SettingItem(
-                  title: translate(context, 'more_apps'),
-                  onTap: () {
-                    launch(
-                        "https://play.google.com/store/apps/developer?id=AK.Dev");
-                  },
-                  child: Icon(
-                    Icons.apps_rounded,
-                    color: Theme.of(context).primaryColor,
-                    size: 30,
+                if (Platform.isAndroid)
+                  SettingItem(
+                    title: translate(context, 'more_apps'),
+                    onTap: () {
+                      launch(
+                          "https://play.google.com/store/apps/developer?id=AK.Dev");
+                    },
+                    child: Icon(
+                      Icons.apps_rounded,
+                      color: Theme.of(context).primaryColor,
+                      size: 30,
+                    ),
                   ),
-                ),
                 SettingItem(
                   title: translate(context, 'share_app'),
                   onTap: () {
-                    Share.share(
-                        'https://play.google.com/store/apps/details?id=' +
-                            "com.akdev.qrscanner");
+                    if (Platform.isIOS) {
+                      // Share.share(
+                      //     "https://apps.apple.com/app/instant-to-do-pomodoro-timer/id1616722900");
+                    } else if (Platform.isAndroid) {
+                      Share.share(
+                          'https://play.google.com/store/apps/details?id=com.akdev.qrscanner');
+                    }
                   },
                   child: Icon(
                     Icons.share_rounded,
@@ -172,6 +183,7 @@ class SettingItem extends StatelessWidget {
   final Widget child;
   final String title;
   final Function() onTap;
+
   const SettingItem({
     required this.title,
     required this.child,

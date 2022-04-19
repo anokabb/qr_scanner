@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,8 +87,13 @@ class Utils {
                                       if (rating >= 3) {
                                         prefs.setBool('rated', true);
                                         Navigator.pop(cnt);
-                                        launch(
-                                            'https://play.google.com/store/apps/details?id=com.akdev.qrscanner');
+                                        if (Platform.isIOS) {
+                                          // launch(
+                                          //     "https://apps.apple.com/app/instant-to-do-pomodoro-timer/id1616722900");
+                                        } else if (Platform.isAndroid) {
+                                          launch(
+                                              "https://play.google.com/store/apps/details?id=com.akdev.qrscanner");
+                                        }
                                       } else if (rating > 0) {
                                         Navigator.pop(cnt);
                                       }

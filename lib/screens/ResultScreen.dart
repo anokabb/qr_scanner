@@ -3,17 +3,15 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qr_scanner/components/Ads.dart';
 import 'package:qr_scanner/components/MyBanner.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../components/QrIconType.dart';
 import '../cubit/theme_cubit.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import '../models/QR.dart';
 import '../components/CuperIcon.dart';
 import '../components/CustomAppBar.dart';
@@ -155,10 +153,10 @@ class _ResultScreenState extends State<ResultScreen> {
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: fullNativeAd(context),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 16),
+                //   child: fullNativeAd(context),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Column(

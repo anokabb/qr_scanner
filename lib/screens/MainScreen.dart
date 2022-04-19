@@ -4,20 +4,59 @@ import 'package:flutter/services.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_scanner/Utils/Utils.dart';
-import 'package:qr_scanner/components/MyBanner.dart';
 import '../models/AdsUnitId.dart';
 import '../Utils/Localization/app_localizations.dart';
 import 'CreateScreen.dart';
 import 'HistoryScreen.dart';
 import 'ScannerScreen.dart';
 import 'SettingsScreen.dart';
-import 'package:native_admob_flutter/native_admob_flutter.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class MainScreen extends StatefulWidget {
   static QRViewController? controller;
-  static showInterstitial() {
-    _MainScreenState.showInterstitial();
+
+  //*                                   Ads                                    */
+  static int _adDisplayTimes = 1;
+  static InterstitialAd? myInterstitial;
+
+  static void showInterstitial() async {
+    if (myInterstitial == null) {
+      loadInterstitial();
+    } else {
+      myInterstitial!.show();
+      loadInterstitial();
+    }
   }
+
+  static void showInterstitialInterval() async {
+    if (_adDisplayTimes % 3 == 0) {
+      showInterstitial();
+    }
+    _adDisplayTimes++;
+  }
+
+  static int _failedTimes = 0;
+
+  static void loadInterstitial() {
+    log('🔵 loadInterstitial');
+    InterstitialAd.load(
+        adUnitId: AdsUnitID.InterstitialUnitID,
+        request: AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          onAdLoaded: (InterstitialAd ad) {
+            myInterstitial = ad;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            if (_failedTimes < 9) {
+              log('🔴 InterstitialAd failed to load: $error');
+              loadInterstitial();
+              _failedTimes++;
+            }
+          },
+        ));
+  }
+
+  //*                                   Ads                                    */
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -25,21 +64,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   bool secondBackClick = false;
-  //*                                   Ads                                    */
-
-  static final interstitial =
-      InterstitialAd(unitId: AdsUnitID.InterstitialUnitID);
-
-  static showInterstitial() async {
-    if (!interstitial.isAvailable) {
-      await interstitial.load();
-    } else {
-      await interstitial.show();
-      interstitial.load(force: true);
-    }
-  }
-
-  //*                                   Ads                                    */
 
   late PersistentTabController _pagecontroller;
 
@@ -47,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _pagecontroller = PersistentTabController(initialIndex: 0);
-    interstitial.load();
+    MainScreen.loadInterstitial();
   }
 
   List<Widget> _buildScreens() {
@@ -120,12 +144,14 @@ class _MainScreenState extends State<MainScreen> {
             },
             confineInSafeArea: true,
             backgroundColor: Theme.of(context).backgroundColor,
-            handleAndroidBackButtonPress: true, // Default is true.
-            resizeToAvoidBottomInset:
-                true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-            stateManagement: true, // Default is true.
-            hideNavigationBarWhenKeyboardShows:
-                true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+            handleAndroidBackButtonPress: true,
+            // Default is true.
+            resizeToAvoidBottomInset: true,
+            // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+            stateManagement: true,
+            // Default is true.
+            hideNavigationBarWhenKeyboardShows: true,
+            // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
             decoration: NavBarDecoration(
               borderRadius: BorderRadius.circular(0.0),
               colorBehindNavBar: Theme.of(context).backgroundColor,

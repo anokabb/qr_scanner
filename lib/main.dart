@@ -1,4 +1,4 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -10,14 +10,18 @@ import 'cubit/internet_cubit.dart';
 import 'cubit/locale_cubit.dart';
 import 'cubit/theme_cubit.dart';
 import 'models/Themes.dart';
-import 'package:native_admob_flutter/native_admob_flutter.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await MobileAds.initialize();
-  HydratedBloc.storage = await HydratedStorage.build(
+  await MobileAds.instance.initialize();
+
+  final storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
-  runApp(MyApp());
+  HydratedBlocOverrides.runZoned(
+    () => runApp(MyApp()),
+    storage: storage,
+  );
 }
 
 class MyApp extends StatelessWidget {

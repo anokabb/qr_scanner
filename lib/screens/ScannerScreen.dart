@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_scanner/cubit/internet_cubit.dart';
 import '../Utils/Localization/app_localizations.dart';
 import '../db/database_provider.dart';
 import '../models/QR.dart';
@@ -22,6 +21,7 @@ class ScannerScreen extends StatefulWidget {
 
 class _ScannerScreenState extends State<ScannerScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
   @override
   void initState() {
     // BlocProvider.of<InternetCubit>(context).stream.listen((event) {
@@ -124,8 +124,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   Future pickImage() async {
-    final PickedFile? pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     try {
       Map map = await RecognitionQrcode.recognition(pickedFile!.path);
@@ -136,14 +136,17 @@ class _ScannerScreenState extends State<ScannerScreen> {
           msg: translate(context, 'no_qr'),
         );
       } else {
-        QR Qr = QR(value: qrData, isScanned: true);
-        DatabaseProvider.db.insert(context, Qr);
-        pushNewScreen(
+        QR qrVal = QR(value: qrData, isScanned: true);
+        DatabaseProvider.db.insert(context, qrVal);
+        MainScreen.showInterstitialInterval();
+        await pushNewScreen(
           context,
-          screen: ResultScreen(Qr),
+          screen: ResultScreen(qrVal),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.fade,
         );
+        if (MainScreen.controller != null)
+          MainScreen.controller!.resumeCamera();
       }
     } catch (e) {
       Fluttertoast.showToast(
@@ -158,15 +161,16 @@ class _ScannerScreenState extends State<ScannerScreen> {
       log(scanData.toString());
       controller.pauseCamera();
       print(scanData);
-      QR Qr = QR(value: scanData.code, isScanned: true);
+      QR Qr = QR(value: scanData.code!, isScanned: true);
       DatabaseProvider.db.insert(context, Qr);
+      MainScreen.showInterstitialInterval();
       await pushNewScreen(
         context,
         screen: ResultScreen(Qr),
         withNavBar: false,
         pageTransitionAnimation: PageTransitionAnimation.fade,
       );
-      controller.resumeCamera();
+      if (MainScreen.controller != null) MainScreen.controller!.resumeCamera();
     });
   }
 
