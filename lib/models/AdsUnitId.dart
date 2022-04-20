@@ -9,13 +9,13 @@ class AdsUnitID {
   static const String AndroidNativeAdUnitID =
       'ca-app-pub-3940256099942544/2247696110';
 
-  /// ***** Test IOS Ads *******/
-  static const String IOSBannerUnitID =
-      'ca-app-pub-3940256099942544/2934735716';
-  static const String IOSNativeAdUnitID =
-      'ca-app-pub-3940256099942544/3986624511';
-  static const String IOSInterstitial =
-      'ca-app-pub-3940256099942544/4411468910';
+  // /// ***** Test IOS Ads *******/
+  // static const String IOSBannerUnitID =
+  //     'ca-app-pub-3940256099942544/2934735716';
+  // static const String IOSNativeAdUnitID =
+  //     'ca-app-pub-3940256099942544/3986624511';
+  // static const String IOSInterstitial =
+  //     'ca-app-pub-3940256099942544/4411468910';
 
   /// ***** Android Ads *******/
   // static const String AndroidBannerUnitID =
@@ -25,11 +25,13 @@ class AdsUnitID {
   // static const String AndroidNativeAdUnitID =
   //     'ca-app-pub-9745500678773453/9054369886';
 
-  //***** IOS Ads *******/
-  // static const String IOSBannerUnitID = 'ca-app-pub-9745500678773453/4978705455';
-  // static const String IOSInterstitial =
-  //     'ca-app-pub-9745500678773453/8433900588';
-  // static const String IOSNativeAdUnitID = 'ca-app-pub-9745500678773453/8785076769';
+  // ***** IOS Ads *******/
+  static const String IOSBannerUnitID =
+      'ca-app-pub-9745500678773453/4978705455';
+  static const String IOSInterstitial =
+      'ca-app-pub-9745500678773453/8433900588';
+  static const String IOSNativeAdUnitID =
+      'ca-app-pub-9745500678773453/8785076769';
 
   static String get InterstitialUnitID => Platform.isIOS
       ? IOSInterstitial
