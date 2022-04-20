@@ -157,7 +157,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     BlocProvider.of<LocaleCubit>(context).state.langCode ==
                             Languages.ARABIC_STR
                         ? Alignment.centerRight
-                        : Alignment.centerLeft,
+                        : Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Icon(
@@ -168,18 +168,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
               ),
             ),
-            direction: DismissDirection.startToEnd,
+            direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               print('onDismissed id : ' + _qrList[pos].id.toString());
               DatabaseProvider.db.delete(context, _qrList[pos].id!);
             },
             child: Row(
               children: [
-                Container(
-                  color: Colors.red,
-                  height: 70,
-                  width: 2,
-                ),
                 Expanded(
                   child: ListTile(
                     leading: ClayContainer(
@@ -211,6 +206,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       style: TextStyle(color: Colors.grey),
                     ),
                   ),
+                ),
+                Container(
+                  color: Colors.red,
+                  height: 70,
+                  width: 2,
                 ),
               ],
             ),
